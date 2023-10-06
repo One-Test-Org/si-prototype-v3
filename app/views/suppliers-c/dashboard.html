@@ -151,6 +151,19 @@ Supplier`s information - GOV.UK
           </a>
         </dd>
       </div>
+
+      {% elif  data['exclusion1'] == '' and data['exclusion2'] == '' and data ['exclusion3'] == '' and data ['exclusion4'] == '' and data ['exclusion5'] == '' and data['exclusion6']  == '' and data ['exclusion7']  == '' and data ['exclusion8']  == '' and data ['exclusion9'] == '' and data ['exclusion10'] == '' and data ['exclusion11'] == '' and data ['exclusion12'] == '' and data ['exclusion13'] == '' %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Mandatory exclusions
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/mandatory/exclusion-grounds">
+            None / Change<span class="govuk-visually-hidden"> Change</span>
+          </a>
+        </dd>
+      </div>
   
         {% else %}
 
@@ -176,6 +189,19 @@ Supplier`s information - GOV.UK
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="/discretionary/add-another-exclusion">
             View<span class="govuk-visually-hidden"> View</span>
+          </a>
+        </dd>
+      </div>
+
+      {% elif  data['exclusionDis1'] == '' and data['exclusionDis2'] == '' and data ['exclusionDis3'] == '' and data ['exclusionDis4'] == '' and data ['exclusionDis5'] == '' and data['exclusionDis6']  == '' and data ['exclusionDis7']  == '' and data ['exclusionDis8']  == '' and data ['exclusionDis9'] == '' %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Discretionary exclusions
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/discretionary/exclusion-grounds">
+            None / Change <span class="govuk-visually-hidden"> Change</span>
           </a>
         </dd>
       </div>

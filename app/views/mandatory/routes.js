@@ -8,13 +8,25 @@ const path = require('node:path')
 
 router.post('/exclusion-grounds', function (req, res) {
 
-    let exclusion = req.session.data.exclusion;
+    let exclusion1 = req.session.data.exclusion1;
+    let exclusion2 = req.session.data.exclusion2;
+    let exclusion3 = req.session.data.exclusion3;
+    let exclusion4 = req.session.data.exclusion4;
+    let exclusion5 = req.session.data.exclusion5;
+    let exclusion6 = req.session.data.exclusion6;
+    let exclusion7 = req.session.data.exclusion7;
+    let exclusion8 = req.session.data.exclusion8;
+    let exclusion9 = req.session.data.exclusion9;
+    let exclusion10 = req.session.data.exclusion10;
+    let exclusion11 = req.session.data.exclusion11;
+    let exclusion12 = req.session.data.exclusion12;
+    let exclusion13 = req.session.data.exclusion13;
     let startQuestion = req.session.data.startQuestion;
 
-    if (exclusion == 'none' && startQuestion == 'Company') {
+    if (exclusion1 == '' && exclusion2 == '' && exclusion3 == '' && exclusion4 == '' && exclusion5 == '' && exclusion6 == '' && exclusion7 == '' && exclusion8 == '' && exclusion9 == '' && exclusion10 == '' && exclusion11 == '' && exclusion12 == '' && exclusion13 == '' && startQuestion == 'Company') {
         res.redirect('/suppliers-c/dashboard');
 
-    } else if (exclusion == 'none') {
+    } else if ( startQuestion == 'Individual') {
         res.redirect('/suppliers-d/dashboard');
     } else {
         res.redirect('event-subject');
