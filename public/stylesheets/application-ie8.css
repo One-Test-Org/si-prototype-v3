@@ -6623,22 +6623,6 @@ p + .govuk-heading-s,
   border-bottom: 10px solid #1d70b8;
 }
 
-.moj-header__mast {
-  background-color: #1d70b8;
-  height: 120;
-  color: #ffffff;
-  font-family: "GDS Transport", arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 32px;
-  font-size: 2rem;
-  line-height: 1.09375;
-  font-size: 48px;
-  font-size: 3rem;
-  line-height: 1.0416666667;
-}
-
 .moj-header__container {
   max-width: 960px;
   width: 960px;
@@ -6660,6 +6644,7 @@ p + .govuk-heading-s,
 .moj-header__logotype-crown {
   position: relative;
   top: -4px;
+  margin-right: 5px;
   vertical-align: top;
 }
 
@@ -6742,8 +6727,7 @@ p + .govuk-heading-s,
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 1.25;
-  vertical-align: left;
-  margin-right: 15px;
+  vertical-align: middle;
 }
 .moj-header__link--organisation-name:hover, .moj-header__link > a--organisation-name:hover {
   border-color: transparent;
@@ -6759,7 +6743,7 @@ p + .govuk-heading-s,
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 1.25;
-  margin-left: 60px;
+  margin-left: 5px;
 }
 .moj-header__link--service-name:hover, .moj-header__link > a--service-name:hover {
   border-color: transparent;

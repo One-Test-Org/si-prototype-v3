@@ -9397,37 +9397,6 @@ p + .govuk-heading-s,
   border-bottom: 10px solid #1d70b8;
 }
 
-.moj-header__mast {
-  background-color: #1d70b8;
-  height: 120;
-  color: #ffffff;
-  font-family: "GDS Transport", arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 32px;
-  font-size: 2rem;
-  line-height: 1.09375;
-}
-@media print {
-  .moj-header__mast {
-    font-family: sans-serif;
-  }
-}
-@media (min-width: 40.0625em) {
-  .moj-header__mast {
-    font-size: 48px;
-    font-size: 3rem;
-    line-height: 1.0416666667;
-  }
-}
-@media print {
-  .moj-header__mast {
-    font-size: 32pt;
-    line-height: 1.15;
-  }
-}
-
 .moj-header__container {
   max-width: 960px;
   margin: 0 15px;
@@ -9461,6 +9430,7 @@ p + .govuk-heading-s,
 .moj-header__logotype-crown {
   position: relative;
   top: -4px;
+  margin-right: 5px;
   vertical-align: top;
 }
 
@@ -9550,8 +9520,7 @@ p + .govuk-heading-s,
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.1111111111;
-  vertical-align: left;
-  margin-right: 15px;
+  vertical-align: middle;
 }
 @media print {
   .moj-header__link--organisation-name, .moj-header__link > a--organisation-name {
@@ -9608,7 +9577,7 @@ p + .govuk-heading-s,
 }
 @media (min-width: 48.0625em) {
   .moj-header__link--service-name, .moj-header__link > a--service-name {
-    margin-left: 60px;
+    margin-left: 5px;
   }
 }
 .moj-header__link--service-name:hover, .moj-header__link > a--service-name:hover {

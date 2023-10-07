@@ -8,22 +8,22 @@ const path = require('node:path')
 
 router.post('/exclusion-grounds', function (req, res) {
 
-    let exclusion1 = req.session.data.exclusion1;
-    let exclusion2 = req.session.data.exclusion2;
-    let exclusion3 = req.session.data.exclusion3;
-    let exclusion4 = req.session.data.exclusion4;
-    let exclusion5 = req.session.data.exclusion5;
-    let exclusion6 = req.session.data.exclusion6;
-    let exclusion7 = req.session.data.exclusion7;
-    let exclusion8 = req.session.data.exclusion8;
-    let exclusion9 = req.session.data.exclusion9;
-    let exclusion10 = req.session.data.exclusion10;
-    let exclusion11 = req.session.data.exclusion11;
-    let exclusion12 = req.session.data.exclusion12;
-    let exclusion13 = req.session.data.exclusion13;
+    let exclusionMan1 = req.session.data.exclusionMan1;
+    let exclusionMan2 = req.session.data.exclusionMan2;
+    let exclusionMan3 = req.session.data.exclusionMan3;
+    let exclusionMan4 = req.session.data.exclusionMan4;
+    let exclusionMan5 = req.session.data.exclusionMan5;
+    let exclusionMan6 = req.session.data.exclusionMan6;
+    let exclusionMan7 = req.session.data.exclusionMan7;
+    let exclusionMan8 = req.session.data.exclusionMan8;
+    let exclusionMan9 = req.session.data.exclusionMan9;
+    let exclusionMan10 = req.session.data.exclusionMan10;
+    let exclusionMan11 = req.session.data.exclusionMan11;
+    let exclusionMan12 = req.session.data.exclusionMan12;
+    let exclusionMan13 = req.session.data.exclusionMan13;
     let startQuestion = req.session.data.startQuestion;
 
-    if (exclusion1 == '' && exclusion2 == '' && exclusion3 == '' && exclusion4 == '' && exclusion5 == '' && exclusion6 == '' && exclusion7 == '' && exclusion8 == '' && exclusion9 == '' && exclusion10 == '' && exclusion11 == '' && exclusion12 == '' && exclusion13 == '' && startQuestion == 'Company') {
+    if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Company') {
         res.redirect('/suppliers-c/dashboard');
 
     } else if ( startQuestion == 'Individual') {
@@ -84,6 +84,7 @@ router.post('/event-date', function (req, res) {
     res.redirect('check-answers');
 })
 
+/*
 // Add another pattern
 
 router.get('/:index/remove-exclusion', function (req, res) {
@@ -196,6 +197,118 @@ router.get('/:index/remove-exclusion', function (req, res) {
     }
   });
   
+*/
+
+// Add another pattern
+
+router.get('/:index/remove-exclusion', function (req, res) {
+    res.render(path.resolve(__dirname, 'remove-exclusion')); 
+  });
+
+  router.post('/:index/remove-exclusion', function (req, res) {
+    let removeExclusionMan = req.session.data.removeExclusionMan;
+    const exclusionMans = req.session.data.exclusionManArray || [];
+
+    if (removeExclusionMan == 'Yes' && exclusionMans.length) {
+        const deleteIndex = req.params.index - 1;
+        const maxIndex = exclusionMans.length || 0;
+
+        if (deleteIndex <= maxIndex) {
+            exclusionMans.splice(deleteIndex, 1);
+
+            req.session.data.exclusionManArray = exclusionMans;
+            req.session.data.exclusionManCount = exclusionMans.length;
+        }
+    }
+
+    res.redirect('../add-another-exclusion');
+  });
+
+  router.get('/:index/check-answers', function (req, res) {
+    const data = req.session.data;
+    const index = parseInt(req.params.index);
+    const exclusionMans = data.exclusionManArray || [];
+
+    if (!exclusionMans.length) {
+        return res.redirect('../add-another-exclusion');
+    }
+
+    const exclusionMan = exclusionMans[req.params.index - 1] || {};
+
+    req.session.data = {
+        ...data,
+        ...exclusionMan,
+        editExclusionMan: index,
+    };
+
+    res.redirect('../check-answers');
+  });
+
+  router.post('/check-answers', function (req, res) {
+    const data = req.session.data;
+    const exclusionMans = data.exclusionManArray || [];
+
+    const exclusionMan = {
+        exclusionMan: data.eventSub,
+        convictionDay: data.convictionDay,
+        convictionMonth: data.convictionMonth,
+        convictionYear: data.convictionYear
+    };
+
+    if (data.editExclusionMan) {
+        exclusionMans[data.editExclusionMan - 1] = exclusionMan;
+    }
+    else {
+        exclusionMans.push(exclusionMan)
+        data.exclusionManArray = exclusionMans;
+        data.exclusionManCount = exclusionMans.length;
+    }
+
+    delete data.editExclusionMan;
+
+    res.redirect('add-another-exclusion');
+  });
+
+  router.post('/add-another-exclusion-route', function (req, res) {
+  var sessionData = req.session.data;
+     var exclusionManArray = sessionData.exclusionManArray || [];
+     var exclusionMan = {
+         "id": exclusionManArray.length + 1,
+         "exclusionMan": sessionData.exclusionMan, 
+     }
+     exclusionManArray.push(exclusionMan);
+     sessionData.exclusionManArray = exclusionManArray;
+     sessionData.exclusionManCount = exclusionManArray.length;
+     res.redirect('add-another-exclusion');
+  });
+
+  router.post('/add-another-exclusion', function (req, res) {
+    delete req.session.data.editExclusionMan;
+
+    if (req.session.data.addAnotherExclusionMan == 'Yes') {
+        res.redirect('exclusion-grounds');
+    }
+    else {
+
+        let startQuestion = req.session.data.startQuestion;
+        if (startQuestion == 'Company') {
+            res.redirect('../suppliers-c/dashboard');
+        }
+        res.redirect('../suppliers-d/dashboard');
+    }
+  });
+
+  router.post('/add-another-exclusion', function (req, res) {
+    delete req.session.data.editExclusionMan;
+
+    if (req.session.data.exclusionManCount == '10') {
+        res.redirect('non-individual-core-data');
+    }
+    else {
+        res.redirect('exclusion-grounds');
+    }
+  });
+
 
 module.exports = router
 
