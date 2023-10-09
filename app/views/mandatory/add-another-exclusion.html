@@ -29,19 +29,19 @@ Supplier`s information - GOV.UK
      
 
       <h1 class="govuk-heading-l">
-        {% if (data['exclusionCount'] == "1") %}
+        {% if (data['exclusionManCount'] == "1") %}
           You have added 1 Mandatory exclusion
         {% else %}
-          You have added {{ data['exclusionCount'] }} Mandatory exclusions
+          You have added {{ data['exclusionManCount'] }} Mandatory exclusions
         {% endif %}
       </h1>
 
       <div class="govuk-form-group">
-        {% for exclusion in data['exclusionArray'] %}
+        {% for exclusionMan in data['exclusionManArray'] %}
         <dl class="govuk-summary-list ros-add-to-a-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                {{ exclusion['exclusion'] }}
+                {{ exclusionMan['exclusionMan'] }}
             </dt>
             <dd class="govuk-summary-list__value"></dd>
             <dd class="govuk-summary-list__actions">
@@ -59,7 +59,7 @@ Supplier`s information - GOV.UK
         {% endfor %}
 
 
-        {% if (data['exclusionArray'].length <= 10) %}
+        {% if (data['exclusionManArray'].length <= 10) %}
           <fieldset class="govuk-fieldset" data-required data-error="Select yes if you need to add another exclusion"
             aria-required="true">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -69,16 +69,16 @@ Supplier`s information - GOV.UK
             </legend>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="addAnotherExclusion" name="addAnotherExclusion" type="radio"
+                <input class="govuk-radios__input" id="addAnotherExclusionMan" name="addAnotherExclusionMan" type="radio"
                   value="Yes">
-                <label class="govuk-label govuk-radios__label" for="addAnotherExclusion">
+                <label class="govuk-label govuk-radios__label" for="addAnotherExclusionMan">
                   Yes
                 </label>
               </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="addAnotherExclusion-1" name="addAnotherExclusion" type="radio"
+                <input class="govuk-radios__input" id="addAnotherExclusionMan-1" name="addAnotherExclusionMan" type="radio"
                   value="No">
-                <label class="govuk-label govuk-radios__label" for="addAnotherExclusion">
+                <label class="govuk-label govuk-radios__label" for="addAnotherExclusionMan">
                   No
                 </label>
               </div>
