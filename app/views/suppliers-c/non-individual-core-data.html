@@ -362,32 +362,49 @@ Supplier`s information - GOV.UK
 
       <!-- Qualifications section -->
 
-      {% if data['qualificationArray'] | length != "0" %}
-
-      {% for route in data['qualificationArray'] %}
+      {% if data['qualificationArray'] | length == "1" %}
+  
       <div class="govuk-summary-list__row ros-add-to-a-list">
         <dt class="govuk-summary-list__key">
-          Qualification:
+          Qualifications:
         </dt>
         <dt class="govuk-summary-list__value">
-          {{ route['qualifiedName'] }}
+          You have added
         </dt>
         <dt class="govuk-summary-list__value">
-          {{ route['qualificationType'] }}
+          {{ data['qualificationCount'] }} qualification
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="add-another-qualification">
-            Change<span class="govuk-visually-hidden"> Change</span>
+            View<span class="govuk-visually-hidden">View</span>
           </a>
         </dd>
       </div>
-      {% endfor %}
+
+      {% elif data['qualificationArray'] | length != "0" and data['qualificationArray'] | length != "1" %}
+  
+      <div class="govuk-summary-list__row ros-add-to-a-list">
+        <dt class="govuk-summary-list__key">
+          Qualifications:
+        </dt>
+        <dt class="govuk-summary-list__value">
+          You have added
+        </dt>
+        <dt class="govuk-summary-list__value">
+          {{ data['qualificationCount'] }} qualifications
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="add-another-qualification">
+            View<span class="govuk-visually-hidden">View</span>
+          </a>
+        </dd>
+      </div>
 
       {% elif data['qualificationQuestion'] == "No" %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Qualification:
+          Qualifications:
         </dt>
         <dt class="govuk-summary-list__value">
           None
@@ -397,7 +414,7 @@ Supplier`s information - GOV.UK
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="qualification-question">
-            Change<span class="govuk-visually-hidden">Change</span>
+            CView<span class="govuk-visually-hidden">View</span>
           </a>
         </dd>
       </div>
@@ -406,7 +423,7 @@ Supplier`s information - GOV.UK
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Qualification:
+          Qualifications:
         </dt>
         <dt class="govuk-summary-list__value">
         </dt>
@@ -424,32 +441,49 @@ Supplier`s information - GOV.UK
 
       <!-- Trades section -->
 
-      {% if data['tradeArray'] | length != "0" %}
+      {% if data['tradeArray'] | length == "1" %}
 
-      {% for route in data['tradeArray'] %}
       <div class="govuk-summary-list__row ros-add-to-a-list">
         <dt class="govuk-summary-list__key">
-          Trade assurance:
+          Trade assurances:
         </dt>
         <dt class="govuk-summary-list__value">
-          Trade assurance {{ loop.index }}
+          You have added
         </dt>
         <dt class="govuk-summary-list__value">
-          {{ route['tradeType'] }}
+          {{ data['tradeCount'] }} trade assurance
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="add-another-trade">
-            Change<span class="govuk-visually-hidden"> Change</span>
+            View<span class="govuk-visually-hidden">View</span>
           </a>
         </dd>
       </div>
-      {% endfor %}
+     
+      {% elif data['tradeArray'] | length != "0" and data['tradeArray'] | length != "1" %}
+
+      <div class="govuk-summary-list__row ros-add-to-a-list">
+        <dt class="govuk-summary-list__key">
+          Trade assurances:
+        </dt>
+        <dt class="govuk-summary-list__value">
+          You have added
+        </dt>
+        <dt class="govuk-summary-list__value">
+          {{ data['tradeCount'] }} trade assurances
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="add-another-trade">
+            View<span class="govuk-visually-hidden">View</span>
+          </a>
+        </dd>
+      </div>
 
       {% elif data['tradeQuestion'] == "No" %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Trade assurance:
+          Trade assurances:
         </dt>
         <dt class="govuk-summary-list__value">
           None
@@ -459,7 +493,7 @@ Supplier`s information - GOV.UK
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="trade-question">
-            Change<span class="govuk-visually-hidden">Change</span>
+            View<span class="govuk-visually-hidden">View</span>
           </a>
         </dd>
       </div>
@@ -468,7 +502,7 @@ Supplier`s information - GOV.UK
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Trade assurance:
+          Trade assurances:
         </dt>
         <dt class="govuk-summary-list__value">
         </dt>
