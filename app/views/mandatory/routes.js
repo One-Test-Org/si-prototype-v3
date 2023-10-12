@@ -26,7 +26,7 @@ router.post('/exclusion-grounds', function (req, res) {
     if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Company') {
         res.redirect('/suppliers-c/dashboard');
 
-    } else if ( startQuestion == 'Individual') {
+    } else if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == ''&& startQuestion == 'Individual') {
         res.redirect('/suppliers-d/dashboard');
     } else {
         res.redirect('event-subject');

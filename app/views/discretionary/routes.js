@@ -20,7 +20,7 @@ router.post('/exclusion-grounds', function (req, res) {
     if (exclusionDis1 == '' && exclusionDis2 == '' && exclusionDis3 == '' && exclusionDis4 == '' && exclusionDis5 == '' && exclusionDis6 == '' && exclusionDis7 == '' && exclusionDis8 == '' && startQuestion == 'Company') {
         res.redirect('/suppliers-c/dashboard');
 
-    } else if ( startQuestion == 'Individual') {
+    } else if (exclusionDis1 == '' && exclusionDis2 == '' && exclusionDis3 == '' && exclusionDis4 == '' && exclusionDis5 == '' && exclusionDis6 == '' && exclusionDis7 == '' && exclusionDis8 == '' && startQuestion == 'Individual') {
         res.redirect('/suppliers-d/dashboard');
     } else {
         res.redirect('event-subject');
