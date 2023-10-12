@@ -139,7 +139,20 @@ Supplier`s information - GOV.UK
         </dd>
       </div>
 
-      {% else %}
+      {% elif  data['exclusionMan1'] == '' and data['exclusionMan2'] == '' and data ['exclusionMan3'] == '' and data ['exclusionMan4'] == '' and data ['exclusionMan5'] == '' and data['exclusionMan6']  == '' and data ['exclusionMan7']  == '' and data ['exclusionMan8']  == '' and data ['exclusionMan9'] == '' and data ['exclusionMan10'] == '' and data ['exclusionMan11'] == '' and data ['exclusionMan12'] == '' and data ['exclusionMan13'] == '' %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Mandatory exclusions
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/mandatory/exclusion-grounds">
+            None / Change<span class="govuk-visually-hidden"> Change</span>
+          </a>
+        </dd>
+      </div>
+  
+        {% else %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -155,14 +168,27 @@ Supplier`s information - GOV.UK
       {% endif %}
 
       {% if data['eventSubDis'] | length != "0" %}
-        
-       <div class="govuk-summary-list__row">
+
+      <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Discretionary exclusions
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="/discretionary/add-another-exclusion">
-            View <span class="govuk-visually-hidden"> View</span>
+            View<span class="govuk-visually-hidden"> View</span>
+          </a>
+        </dd>
+      </div>
+
+      {% elif  data['exclusionDis1'] == '' and data['exclusionDis2'] == '' and data ['exclusionDis3'] == '' and data ['exclusionDis4'] == '' and data ['exclusionDis5'] == '' and data['exclusionDis6']  == '' and data ['exclusionDis7']  == '' and data ['exclusionDis8']  == '' %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Discretionary exclusions
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/discretionary/exclusion-grounds">
+            None / Change <span class="govuk-visually-hidden"> Change</span>
           </a>
         </dd>
       </div>
@@ -179,7 +205,7 @@ Supplier`s information - GOV.UK
           </a>
         </dd>
       </div>
-        
+
       {% endif %}
 
       {% if data['financialStandIn'] | length == "0" %}
