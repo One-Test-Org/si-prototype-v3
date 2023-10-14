@@ -33,29 +33,31 @@ Supplier`s information - GOV.UK
 
     <form class="form" method="post">
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" data-required data-error="Select Yes if you have any qualifications"
-          aria-required="true">
+        <fieldset class="govuk-fieldset" data-required data-error="Select yes if the organisation has connected persons" aria-required="true">
 
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
-              Does your organisation have any qualifications?
+             Does your organisation have any connected persons?
             </h1>
           </legend>
-		<div id="qualification-question-hint" class="govuk-hint">
-		    A recognised and/or documented qualification, recognising competency and appropriate standards, 
-			within the business field or trade.’
-		  </div>
+		  <div id="connected-hint" class="govuk-hint">
+		      A person with significant control (PSC) is someone who owns or controls your company. 
+			  They’re sometimes called ‘beneficial owners’. Most PSCs are those who hold: more than 25% of shares in the company 
+			  more than 25% of voting rights in the company the right to appoint or remove the majority of the board of directors.
+		    </div>
           <div class="govuk-radios govuk-!-margin-top-6" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="qualificationQuestion" name="qualificationQuestion" type="radio" value="Yes">
-              <label class="govuk-label govuk-radios__label" for="qualificationQuestion">
+              <input class="govuk-radios__input" id="connectedPsc" name="connectedPsc"
+                type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="connectedPsc">
                 Yes
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="qualificationQuestion-2" name="qualificationQuestion" type="radio" value="No">
-              <label class="govuk-label govuk-radios__label" for="qualificationQuestion">
-               No
+              <input class="govuk-radios__input" id="connectedPsc-2" name="connectedPsc"
+                type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="connectedPsc">
+                No
               </label>
             </div>
 

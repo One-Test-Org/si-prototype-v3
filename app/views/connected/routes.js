@@ -5,6 +5,17 @@ const path = require('node:path')
 
 // Add your routes here - above the module.exports line
 
+router.post('/connected-question', function (req, res) {
+
+	let connectedPsc = req.session.data.connectedPsc;
+
+	if (connectedPsc == "Yes") {
+		res.redirect('persons');
+	} else {
+		res.redirect('../suppliers-c/dashboard')
+	}
+})
+
 router.post('/persons', function (req, res) {
 
     let connectedPersons = req.session.data.connectedPersons;

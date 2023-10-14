@@ -105,20 +105,34 @@ Supplier`s information - GOV.UK
       </div>
 
       {% endif %}
+	  
+	  {% if data['connectedPsc'] != "Yes" %}
+	  
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Connected persons
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/connected/connected-question">
+           None / Change <span class="govuk-visually-hidden"> Change</span>
+          </a>
+        </dd>
+      </div>
+	  
 
-      {% if data['connectedPersons'] | length == "0"%}
+      {% elif data['connectedPersons'] | length == "0"%}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Connected persons
         </dt>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="/connected/persons">
+          <a class="govuk-link" href="/connected/connected-question">
             Add<span class="govuk-visually-hidden"> Add</span>
           </a>
         </dd>
       </div>
-
+	  
       {% else %}
 
       <div class="govuk-summary-list__row">
