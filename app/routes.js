@@ -30,6 +30,9 @@ router.post('/signin-success', function (req, res) {
   res.redirect('suppliers-c/dashboard');
 });
 
+router.post('/start-page', function (req, res) {
+  res.redirect('start-question');
+});
 
 router.post('/start-question', function (req, res) {
 
