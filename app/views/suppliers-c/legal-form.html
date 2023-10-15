@@ -15,11 +15,11 @@ Supplier`s information - GOV.UK
 
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-          Prototype
-      </strong>
-      <span class="govuk-phase-banner__text">
-          This is a prototype of a service in development.
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      Prototype
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a prototype of a service in development.
   </p>
 </div>
 
@@ -30,20 +30,72 @@ Supplier`s information - GOV.UK
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <form class="form" method="post">
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" data-required data-error="Enter the Legal formation"
-          aria-required="true">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-heading-l">What is the registered legal form?</h1>
+            <h1 class="govuk-fieldset__heading">
+              What is your organisation’s registered legal form?
+            </h1>
           </legend>
+          <div id="contact-hint" class="govuk-hint govuk-!-margin-bottom-6">
+            Legal form is the organisation type as defined in the Companies Act.
+          </div>
 
-          <input class="govuk-input govuk-input--width-20" name="legalForm" id="legalForm"
-            type="text" aria-describedby="legalForm" value="{{ data['legalForm'] }}">
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email"
+                data-aria-controls="conditional-contact">
+              <label class="govuk-label govuk-radios__label" for="contact">
+                Sole Trader
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone"
+                data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">
+                Partnership
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone"
+                data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">
+                Limited liability partnership
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone"
+                data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">
+                Limited company
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text"
+                data-aria-controls="conditional-contact-3">
+              <label class="govuk-label govuk-radios__label" for="contact-3">
+                Other
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-text">
+                  Provide more detail
+                </label>
+                <input class="govuk-input" id="contact-by-text" name="contactByText" type="tel" autocomplete="tel">
+              </div>
+            </div>
+          </div>
         </fieldset>
       </div>
+
+
       <button class="govuk-button" type="submit">Save and continue</button>
     </form>
   </div>
