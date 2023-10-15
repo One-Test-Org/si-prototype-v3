@@ -105,20 +105,20 @@ Supplier`s information - GOV.UK
       </div>
 
       {% endif %}
-	  
-	  {% if data['connectedPsc'] != "Yes" %}
-	  
+
+      {% if data['connectedPsc'] | length != "0" and data['connectedPersons'] | length == "0" %}
+
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Connected persons
         </dt>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="/connected/connected-question">
-           None / Change <span class="govuk-visually-hidden"> Change</span>
+            None / Change <span class="govuk-visually-hidden"> Change</span>
           </a>
         </dd>
       </div>
-	  
+
 
       {% elif data['connectedPersons'] | length == "0"%}
 
@@ -132,7 +132,7 @@ Supplier`s information - GOV.UK
           </a>
         </dd>
       </div>
-	  
+
       {% else %}
 
       <div class="govuk-summary-list__row">
@@ -166,7 +166,11 @@ Supplier`s information - GOV.UK
         </dd>
       </div>
 
-      {% elif  data['exclusionMan1'] == '' and data['exclusionMan2'] == '' and data ['exclusionMan3'] == '' and data ['exclusionMan4'] == '' and data ['exclusionMan5'] == '' and data['exclusionMan6']  == '' and data ['exclusionMan7']  == '' and data ['exclusionMan8']  == '' and data ['exclusionMan9'] == '' and data ['exclusionMan10'] == '' and data ['exclusionMan11'] == '' and data ['exclusionMan12'] == '' and data ['exclusionMan13'] == '' %}
+      {% elif data['exclusionMan1'] == '' and data['exclusionMan2'] == '' and data ['exclusionMan3'] == '' and data
+      ['exclusionMan4'] == '' and data ['exclusionMan5'] == '' and data['exclusionMan6'] == '' and data
+      ['exclusionMan7'] == '' and data ['exclusionMan8'] == '' and data ['exclusionMan9'] == '' and data
+      ['exclusionMan10'] == '' and data ['exclusionMan11'] == '' and data ['exclusionMan12'] == '' and data
+      ['exclusionMan13'] == '' %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -178,8 +182,8 @@ Supplier`s information - GOV.UK
           </a>
         </dd>
       </div>
-  
-        {% else %}
+
+      {% else %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -207,7 +211,9 @@ Supplier`s information - GOV.UK
         </dd>
       </div>
 
-      {% elif  data['exclusionDis1'] == '' and data['exclusionDis2'] == '' and data ['exclusionDis3'] == '' and data ['exclusionDis4'] == '' and data ['exclusionDis5'] == '' and data['exclusionDis6']  == '' and data ['exclusionDis7']  == '' and data ['exclusionDis8']  == '' %}
+      {% elif data['exclusionDis1'] == '' and data['exclusionDis2'] == '' and data ['exclusionDis3'] == '' and data
+      ['exclusionDis4'] == '' and data ['exclusionDis5'] == '' and data['exclusionDis6'] == '' and data
+      ['exclusionDis7'] == '' and data ['exclusionDis8'] == '' %}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
