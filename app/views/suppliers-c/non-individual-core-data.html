@@ -363,7 +363,7 @@ Supplier`s information - GOV.UK
       <!-- Qualifications section -->
 
       {% if data['qualificationArray'] | length == "1" %}
-  
+
       <div class="govuk-summary-list__row ros-add-to-a-list">
         <dt class="govuk-summary-list__key">
           Qualifications:
@@ -382,7 +382,7 @@ Supplier`s information - GOV.UK
       </div>
 
       {% elif data['qualificationArray'] | length != "0" and data['qualificationArray'] | length != "1" %}
-  
+
       <div class="govuk-summary-list__row ros-add-to-a-list">
         <dt class="govuk-summary-list__key">
           Qualifications:
@@ -459,7 +459,7 @@ Supplier`s information - GOV.UK
           </a>
         </dd>
       </div>
-     
+
       {% elif data['tradeArray'] | length != "0" and data['tradeArray'] | length != "1" %}
 
       <div class="govuk-summary-list__row ros-add-to-a-list">
@@ -520,7 +520,8 @@ Supplier`s information - GOV.UK
 
       <!-- SME section -->
 
-      {% if data ['orgType'] | length != "0" or data ['orgType-2'] | length != "0" or data ['orgType-3'] | length != "0" or data ['orgType-4'] | length != "0"%}
+      {% if data ['orgType'] | length != "0" or data ['orgType-2'] | length != "0" or data ['orgType-3'] | length != "0"
+      or data ['orgType-4'] | length != "0"%}
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -570,6 +571,9 @@ Supplier`s information - GOV.UK
         </dt>
         <dt class="govuk-summary-list__value">
           {{ data['legalForm'] }}
+          {% if data['legalFormByText'] | length != '0' %}
+          {{ data['legalFormByText'] }}
+          {% endif %}
         </dt>
         <dt class="govuk-summary-list__value">
           {{ data['formationDay'] }} / {{ data['formationMonth'] }} / {{ data['formationYear'] }}
