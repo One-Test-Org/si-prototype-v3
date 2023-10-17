@@ -9,11 +9,11 @@ Supplier`s information - GOV.UK
 
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-          Prototype
-      </strong>
-      <span class="govuk-phase-banner__text">
-          This is a prototype of a service in development.
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      Prototype
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a prototype of a service in development.
   </p>
 </div>
 
@@ -28,15 +28,15 @@ Supplier`s information - GOV.UK
     <h2 class="govuk-heading-m" style="color: #1d70b8;">
       Connected persons
     </h2>
-    
+
     <form class="form" method="post">
-     
+
 
       <h1 class="govuk-heading-l">
         {% if (data['connectedPersonCount'] == "1") %}
-          You have added 1 connected person
+        You have added 1 connected person
         {% else %}
-          You have added {{ data['connectedPersonCount'] }} connected persons
+        You have added {{ data['connectedPersonCount'] }} connected persons
         {% endif %}
       </h1>
 
@@ -45,17 +45,21 @@ Supplier`s information - GOV.UK
         <dl class="govuk-summary-list ros-add-to-a-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                {{ connectedPerson['connectedPerson'] }}
+              {{ connectedPerson['connectedPerson'] }}
             </dt>
-            <dd class="govuk-summary-list__value"></dd>
+
+            <!--          <dt class="govuk-summary-list__key">
+              {{ data['connectedPersons'] }}
+            </dt>
+-->
             <dd class="govuk-summary-list__actions">
               <ul class="govuk-summary-list__actions-list">
-              <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link" href="{{loop.index}}/check-answers-connected-person">Change</a>
-              </li>
-              <li class="govuk-summary-list__actions-list-item">
-                <a class="govuk-link" href="{{loop.index}}/remove-connected-person">Remove</a>
-              </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a class="govuk-link" href="{{loop.index}}/check-answers-connected-person">Change</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a class="govuk-link" href="{{loop.index}}/remove-connected-person">Remove</a>
+                </li>
               </ul>
             </dd>
           </div>
@@ -63,41 +67,40 @@ Supplier`s information - GOV.UK
         {% endfor %}
 
 
-        {% if (data['connectedPersonArray'].length <= 100) %}
-          <fieldset class="govuk-fieldset" data-required data-error="Select yes if you need to add another PSC"
-            aria-required="true">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h2 class="govuk-fieldset__heading">
-                Do you need to add another connected person?
-              </h2>
-            </legend>
-            <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="addAnotherConnectedPerson" name="addAnotherConnectedPerson" type="radio"
-                  value="Yes">
-                <label class="govuk-label govuk-radios__label" for="addAnotherConnectedPerson">
-                  Yes
-                </label>
-              </div>
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="addAnotherConnectedPerson" name="addAnotherConnectedPerson" type="radio"
-                  value="No">
-                <label class="govuk-label govuk-radios__label" for="addAnotherConnectedPerson">
-                  No
-                </label>
-              </div>
+        {% if (data['connectedPersonArray'].length <= 100) %} <fieldset class="govuk-fieldset" data-required
+          data-error="Select yes if you need to add another PSC" aria-required="true">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Do you need to add another connected person?
+            </h2>
+          </legend>
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="addAnotherConnectedPerson" name="addAnotherConnectedPerson"
+                type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="addAnotherConnectedPerson">
+                Yes
+              </label>
             </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="addAnotherConnectedPerson" name="addAnotherConnectedPerson"
+                type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="addAnotherConnectedPerson">
+                No
+              </label>
+            </div>
+          </div>
           </fieldset>
-        {% else %}
+          {% else %}
 
           <p class="govuk-!-margin-top-9">You cannot add anymore persons</p>
-        {% endif %}
+          {% endif %}
 
-        <div class="govuk-button-group govuk-!-margin-top-6">
-          <button class="govuk-button" data-module="govuk-button">
-            Save and continue
-          </button>
-        </div>
+          <div class="govuk-button-group govuk-!-margin-top-6">
+            <button class="govuk-button" data-module="govuk-button">
+              Save and continue
+            </button>
+          </div>
 
     </form>
 
