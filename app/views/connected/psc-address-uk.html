@@ -35,8 +35,8 @@ Supplier`s information - GOV.UK
 
         <h2 class="govuk-heading-m" style="color: #1d70b8;">
             Connected persons
-          </h2>
-          <span class="govuk-caption-l">Person of significant control, individual</span>
+        </h2>
+        <span class="govuk-caption-l">Person of significant control, individual</span>
 
         <fieldset class="govuk-fieldset" data-required data-error="Enter the subject address" aria-required="true">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -50,41 +50,46 @@ Supplier`s information - GOV.UK
             <form class="form" method="post">
                 <div class="govuk-form-group">
 
-                        <div class="govuk-form-group govuk-!-margin-top-3">
-                            <label class="govuk-label" for="connectedPersonsUk-address-line-1">
-                                Address line 1
-                            </label>
-                            <input class="govuk-input" id="connectedPersonsUk-address-line-1" name="connectedPersonsUk-address-line-1" type="text"
-                            value="{{ data['connectedPersonsUk-address-line-1'] }}" autocomplete="connectedPersonsUk-address-line1">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="connectedPersonsUk-address-line-2">
-                                Address line 2 
-                            </label>
-                            <input class="govuk-input" id="connectedPersonsUk-address-line-2" name="connectedPersonsUk-address-line-2" type="text"
-                            value="{{ data['connectedPersonsUk-address-line-2'] }}" autocomplete="connectedPersonsUk-address-line-2">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="connectedPersonsUk-address-town">
-                                Town or city
-                            </label>
-                            <input class="govuk-input govuk-!-width-two-thirds" id="connectedPersonsUk-address-town" name="connectedPersonsUk-address-town"
-                                type="text" value="{{ data['connectedPersonsUk-address-town'] }}" autocomplete="connectedPersonsUk-address-town">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="connectedPersonsUk-address-postcode">
-                                County 
-                            </label>
-                            <input class="govuk-input govuk-input--width-20" id="connectedPersonsUk-address-county" name="connectedPersonsUk-address-county"
-                                type="text" value="{{ data['connectedPersonsUk-address-county'] }}" autocomplete="connectedPersonsUk-address-county">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="connectedPersonsUk-address-postcode">
-                                Post code
-                            </label>
-                            <input class="govuk-input govuk-input--width-10" id="connectedPersonsUk-address-postcode"
-                                name="connectedPersonsUk-address-postcode" type="text" value="{{ data['connectedPersonsUk-address-postcode'] }}" autocomplete="connectedPersonsUk-postal-code">
-                        </div>
+                    <div class="govuk-form-group govuk-!-margin-top-3">
+                        <label class="govuk-label" for="connectedPersonsUk-address-line-1">
+                            Address line 1
+                        </label>
+                        <input class="govuk-input" id="connectedPersonsUk-address-line-1"
+                            name="connectedPersonsUk-address-line-1" type="text"
+                            autocomplete="connectedPersonsUk-address-line1">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="connectedPersonsUk-address-line-2">
+                            Address line 2
+                        </label>
+                        <input class="govuk-input" id="connectedPersonsUk-address-line-2"
+                            name="connectedPersonsUk-address-line-2" type="text"
+                            autocomplete="connectedPersonsUk-address-line-2">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="connectedPersonsUk-address-town">
+                            Town or city
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="connectedPersonsUk-address-town"
+                            name="connectedPersonsUk-address-town" type="text"
+                            autocomplete="connectedPersonsUk-address-town">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="connectedPersonsUk-address-postcode">
+                            County
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" id="connectedPersonsUk-address-county"
+                            name="connectedPersonsUk-address-county" type="text"
+                            autocomplete="connectedPersonsUk-address-county">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="connectedPersonsUk-address-postcode">
+                            Post code
+                        </label>
+                        <input class="govuk-input govuk-input--width-10" id="connectedPersonsUk-address-postcode"
+                            name="connectedPersonsUk-address-postcode" type="text"
+                            autocomplete="connectedPersonsUk-postal-code">
+                    </div>
                 </div>
                 <div class="govuk-form-group">
                     <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
