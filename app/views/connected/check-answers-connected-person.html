@@ -28,7 +28,7 @@ Supplier`s information - GOV.UK
     <h2 class="govuk-heading-m" style="color: #1d70b8;">
       Connected persons
     </h2>
-    
+
     <form class="form" method="post">
 
       <!-- GOV / Public  -->
@@ -40,7 +40,7 @@ Supplier`s information - GOV.UK
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-           Authority Name:
+            Authority Name:
           </dt>
           <dd class="govuk-summary-list__value">
 
@@ -70,7 +70,7 @@ Supplier`s information - GOV.UK
             {{ data['govPublicService-address-town'] }} </br>
             {{ data['govPublicService-address-postcode'] }} </br>
             {{ data['govPublicService-address-county'] }} </br>
-            {{ data['selectData'] }} 
+            {{ data['selectData'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="gov-address-type">
@@ -94,7 +94,7 @@ Supplier`s information - GOV.UK
             {{ data['govPublicUk-address-town'] }} </br>
             {{ data['govPublicUk-address-postcode'] }} </br>
             {{ data['govPublicUk-address-county'] }} </br>
-            {{ data['selectData'] }} 
+            {{ data['selectData'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="gov-address-type">
@@ -106,7 +106,7 @@ Supplier`s information - GOV.UK
 
         {% endif %}
 
-      
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Legal form:
@@ -164,9 +164,9 @@ Supplier`s information - GOV.UK
         </div>
       </dl>
 
-      {% else %}
+      {% elif data['connectedPersons'] == "PSC Individual" %}
 
-       <!-- PSC Individual  -->
+      <!-- PSC Individual  -->
 
       <h1 class="govuk-heading-l">Check your answers</h1>
       <dl class="govuk-summary-list govuk-!-margin-bottom-3">
@@ -182,7 +182,7 @@ Supplier`s information - GOV.UK
           </dd>
           <dd class="govuk-summary-list__value">
             {{ data['connectedPerson'] }} </br>
-            {{ data['individualDay'] }} /  {{ data['individualMonth'] }} /  {{ data['individualYear'] }} </br>
+            {{ data['individualDay'] }} / {{ data['individualMonth'] }} / {{ data['individualYear'] }} </br>
             {{ data['selectNationality'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -207,7 +207,7 @@ Supplier`s information - GOV.UK
             {{ data['connectedPersonsUk-address-town'] }} </br>
             {{ data['connectedPersonsUk-address-postcode'] }} </br>
             {{ data['connectedPersonsUk-address-county'] }} </br>
-            {{ data['selectData'] }} 
+            {{ data['selectData'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="address-type.html">
@@ -227,11 +227,11 @@ Supplier`s information - GOV.UK
           </dd>
           <dd class="govuk-summary-list__value">
             {{ data['connectedPersons-address-line-1'] }} </br>
-              {{ data['connectedPersons-address-line-2'] }} </br>
-              {{ data['connectedPersons-address-town'] }} </br>
-              {{ data['connectedPersons-address-postcode'] }} </br>
-              {{ data['connectedPersons-address-county'] }} </br>
-              {{ data['selectData'] }} 
+            {{ data['connectedPersons-address-line-2'] }} </br>
+            {{ data['connectedPersons-address-town'] }} </br>
+            {{ data['connectedPersons-address-postcode'] }} </br>
+            {{ data['connectedPersons-address-county'] }} </br>
+            {{ data['selectData'] }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="address-type">
@@ -242,13 +242,13 @@ Supplier`s information - GOV.UK
         </div>
 
         {% endif %}
-        
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Nature of Control:
           </dt>
           <dd class="govuk-summary-list__value">
-            
+
           </dd>
           <dd class="govuk-summary-list__value">
             {{ data['controlNaturePsc'] }}
@@ -266,7 +266,7 @@ Supplier`s information - GOV.UK
             Registered date:
           </dt>
           <dd class="govuk-summary-list__value">
-            
+
           </dd>
           <dd class="govuk-summary-list__value">
             {{ data['dateRegisteredDay'] }} / {{ data['dateRegisteredMonth'] }} / {{ data['dateRegisteredYear'] }}
@@ -279,26 +279,106 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Register Name:
-            </dt>
-            <dd class="govuk-summary-list__value">
-            
-            </dd>
-            <dd class="govuk-summary-list__value">
-              {{ data['nameRegister'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="psc-register">
-                Change<span class="govuk-visually-hidden">
-                  the type of documentation</span>
-              </a>
-            </dd>
-          </div>
-        </dl>
-        
-          {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Register Name:
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['nameRegister'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-register">
+              Change<span class="govuk-visually-hidden">
+                the type of documentation</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {% elif data['connectedPersons'] == "Director individual" %}
+
+
+      <!-- Director or Shadow Director, Individual  -->
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Director details:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Name: </br>
+            Date of birth: </br>
+            Nationality: </br>
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPerson'] }} </br>
+            {{ data['directorDay'] }} / {{ data['directorMonth'] }} / {{ data['directorYear'] }} </br>
+            {{ data['selectNationality'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="director-individual">
+              Change<span class="govuk-visually-hidden">
+                the Director details</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['addressTypeDir'] == "Yes" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Service address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['directorAddressUk-address-line-1'] }} </br>
+            {{ data['directorAddressUk-address-line-2'] }} </br>
+            {{ data['directorAddressUk-address-town'] }} </br>
+            {{ data['directorAddressUk-address-postcode'] }} </br>
+            {{ data['directorAddressUk-address-county'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="dir-address-type">
+              Change<span class="govuk-visually-hidden">
+                the Director`s address</span>
+            </a>
+          </dd>
+        </div>
+
+        {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Service address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['directorAddress-address-line-1'] }} </br>
+            {{ data['directorAddress-address-line-2'] }} </br>
+            {{ data['directorAddress-address-town'] }} </br>
+            {{ data['directorAddress-address-postcode'] }} </br>
+            {{ data['directorAddress-address-county'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="director-address-type">
+              Change<span class="govuk-visually-hidden">
+                the person`s address</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+        {% endif %}
+      </dl>
   </div>
   <div class="govuk-grid-column-two-thirds">
 

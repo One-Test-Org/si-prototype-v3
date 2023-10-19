@@ -5,6 +5,41 @@ const path = require('node:path')
 
 // Add your routes here - above the module.exports line
 
+router.post('/director-individual', function (req, res) {
+  res.redirect('director-address-type');
+})
+
+router.post('/director-address-type', function (req, res) {
+
+  let addressTypeDir = req.session.data.addressTypeDir;
+
+  if (addressTypeDir == "No") {
+    res.redirect('dir-address');
+  } else {
+    res.redirect('dir-address-uk');
+  }
+})
+
+router.get('/director-individual', function (req, res) {
+  res.render(path.resolve(__dirname, 'director-individual'), {
+    nationalities: require('../../data/data').nationalities
+  })
+})
+
+router.get('/dir-address', function (req, res) {
+  res.render(path.resolve(__dirname, 'dir-address'), {
+    countries: require('../../data/data').countries
+  })
+})
+
+router.post('/dir-address', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
+router.post('/dir-address-uk', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
 router.post('/connected-question', function (req, res) {
 
   let connectedPsc = req.session.data.connectedPsc;
@@ -32,7 +67,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/psc-individual');
 
   } else if (connectedPersons == 'Director individual') {
-    res.redirect('/connected/journey-page');
+    res.redirect('/connected/director-individual');
 
   } else if (connectedPersons == 'Director not individual') {
     res.redirect('/connected/journey-page');
@@ -187,7 +222,7 @@ router.post('/add-another-connected-person', function (req, res) {
   delete req.session.data.editConnectedPerson;
 
   if (req.session.data.addAnotherConnectedPerson == 'Yes') {
-    res.redirect('../connected/persons');
+    res.redirect('../connected/connected-question');
   }
   else {
     res.redirect('../suppliers-c/dashboard');
