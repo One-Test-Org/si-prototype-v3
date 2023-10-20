@@ -5,6 +5,54 @@ const path = require('node:path')
 
 // Add your routes here - above the module.exports line
 
+router.post('/director-individual-ni', function (req, res) {
+  res.redirect('director-address-type-ni');
+})
+
+router.post('/director-address-type-ni', function (req, res) {
+
+  let addressTypeDirNi = req.session.data.addressTypeDirNi;
+
+  if (addressTypeDirNi == "No") {
+    res.redirect('dir-address-ni');
+  } else {
+    res.redirect('dir-address-uk-ni');
+  }
+})
+
+router.get('/dir-address-ni', function (req, res) {
+  res.render(path.resolve(__dirname, 'dir-address-ni'), {
+    countries: require('../../data/data').countries
+  })
+})
+
+router.post('/dir-address-ni', function (req, res) {
+  res.redirect('dir-law-register-ni');
+})
+
+router.post('/dir-address-uk-ni', function (req, res) {
+  res.redirect('dir-law-register-ni');
+})
+
+router.post('/dir-law-register-ni', function (req, res) {
+  res.redirect('dir-company-number-question');
+})
+
+router.post('/dir-company-number-question', function (req, res) {
+
+  let lawRegisterDirNi = req.session.data.lawRegisterDirNi;
+
+  if (lawRegisterDirNi == "Yes") {
+    res.redirect('dir-company-number');
+  } else {
+    res.redirect('check-answers-connected-person');
+  }
+})
+
+router.post('/dir-company-number', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
 router.post('/director-individual', function (req, res) {
   res.redirect('director-address-type');
 })
@@ -70,7 +118,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/director-individual');
 
   } else if (connectedPersons == 'Director not individual') {
-    res.redirect('/connected/journey-page');
+    res.redirect('/connected/director-individual-ni');
 
   } else if (connectedPersons == 'Gov/Public Authority') {
     res.redirect('/connected/gov-organisation');

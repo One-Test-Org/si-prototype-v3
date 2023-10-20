@@ -377,8 +377,123 @@ Supplier`s information - GOV.UK
         </div>
 
         {% endif %}
-        {% endif %}
-      </dl>
+
+        {% elif data['connectedPersons'] == "Director not individual" %}
+
+        <!-- Director or Shadow Director, Not Individual  -->
+
+        <h1 class="govuk-heading-l">Check your answers</h1>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Director details:
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Organisation name:
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['connectedPerson'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="director-individual-ni">
+                Change<span class="govuk-visually-hidden">
+                  the Director details</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['addressTypeDirNi'] == "Yes" %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Service address:
+            </dt>
+            <dd class="govuk-summary-list__value">
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['directorAddressUkNi-address-line-1'] }} </br>
+              {{ data['directorAddressUkNi-address-line-2'] }} </br>
+              {{ data['directorAddressUkNi-address-town'] }} </br>
+              {{ data['directorAddressUkNi-address-postcode'] }} </br>
+              {{ data['directorAddressUkNi-address-county'] }} </br>
+              {{ data['selectData'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="director-address-type-ni">
+                Change<span class="govuk-visually-hidden">
+                  the Director`s address</span>
+              </a>
+            </dd>
+          </div>
+
+          {% else %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Service address:
+            </dt>
+            <dd class="govuk-summary-list__value">
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['directorAddressNi-address-line-1'] }} </br>
+              {{ data['directorAddressNi-address-line-2'] }} </br>
+              {{ data['directorAddressNi-address-town'] }} </br>
+              {{ data['directorAddressNi-address-postcode'] }} </br>
+              {{ data['directorAddressNi-address-county'] }} </br>
+              {{ data['selectData'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="director-address-type-ni">
+                Change<span class="govuk-visually-hidden">
+                  the person`s address</span>
+              </a>
+            </dd>
+          </div>
+
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Is the Organisation registered with Companies House?:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['lawRegisterDirNi'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="nature-of-control-psc">
+                Change<span class="govuk-visually-hidden">
+                  the nature of control</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['lawRegisterDirNi'] == "Yes" %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Registered number:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['companiesHouseNumber'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="date-registered">
+                Change<span class="govuk-visually-hidden">
+                  the registered date</span>
+              </a>
+            </dd>
+          </div>
+
+          {% endif %}
+          {% endif %}
+        </dl>
   </div>
   <div class="govuk-grid-column-two-thirds">
 
