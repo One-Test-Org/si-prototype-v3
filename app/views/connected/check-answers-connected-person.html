@@ -453,6 +453,43 @@ Supplier`s information - GOV.UK
 
           {% endif %}
 
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What is the organisations`s Legal formation:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['dirLegalForm'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="dir-law-register-ni">
+                Change<span class="govuk-visually-hidden">
+                  the legal formation</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Which Law it is covered by:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['dirLaw'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="dir-law-register-ni">
+                Change<span class="govuk-visually-hidden">
+                  the law</span>
+              </a>
+            </dd>
+          </div>
+
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Is the Organisation registered with Companies House?:
