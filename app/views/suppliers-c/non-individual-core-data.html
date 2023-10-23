@@ -120,9 +120,60 @@ Supplier`s information - GOV.UK
 
       {% endif %}
 
+      {% if data['addressSame'] == "Yes" and data['registeredUKaddress-county'] | length != "0" %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Contact postal address:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['registeredUKaddress-line-1'] }} </br>
+          {{ data['registeredUKaddress-line-2'] }} </br>
+          {{ data['registeredUKaddress-town'] }} </br>
+          {{ data['registeredUKaddress-county'] }} </br>
+          {{ data['registeredUKaddress-postcode'] }} </br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="is-the-address-same">
+            Change<span class="govuk-visually-hidden"> Change</span>
+          </a>
+        </dd>
+      </div>
+
+      {% elif data['addressSame'] == "Yes" %}
+
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Contact postal address:
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['registered-address-line-1'] }} </br>
+          {{ data['registered-address-line-2'] }} </br>
+          {{ data['registered-address-town'] }} </br>
+          {{ data['registered-address-county'] }} </br>
+          {{ data['registered-address-postcode'] }} </br>
+          {{ data['selectData'] }} </br>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="is-the-address-same">
+            Change<span class="govuk-visually-hidden"> Change</span>
+          </a>
+        </dd>
+      </div>
+
+      {% else %}
+
+
       {% if data['addressTypePos'] == "No" %}
-
-
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -184,12 +235,13 @@ Supplier`s information - GOV.UK
         <dd class="govuk-summary-list__value">
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="postal-address-type">
+          <a class="govuk-link" href="is-the-address-same">
             Add<span class="govuk-visually-hidden">Add</span>
           </a>
         </dd>
       </div>
 
+      {% endif %}
       {% endif %}
 
       {% if data['vatReg'] == "No" %}
@@ -520,7 +572,8 @@ Supplier`s information - GOV.UK
 
       <!-- SME section -->
 
-      {% if data ['orgType'] | length != "0" or data ['orgType-2'] | length != "0" or data ['orgType-3'] | length != "0"
+      {% if data ['orgType'] | length != "0" or data ['orgType-2'] | length != "0" or data ['orgType-3'] | length !=
+      "0"
       or data ['orgType-4'] | length != "0"%}
 
       <div class="govuk-summary-list__row">
