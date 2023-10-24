@@ -31,6 +31,160 @@ Supplier`s information - GOV.UK
 
     <form class="form" method="post">
 
+
+
+      {% if data['connectedPersons'] == "PSC not individual or Public Authority" %}
+
+      <!-- PSC not individual or Public Authority  -->
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+      <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            PSC details:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Organisation's name: </br>
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPerson'] }} </br>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-individual-ni">
+              Change<span class="govuk-visually-hidden">
+                the PSC details</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['addressTypePscNi'] == "Yes" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Service address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPersonsUkPscNi-address-line-1'] }} </br>
+            {{ data['connectedPersonsUkPscNi-address-line-2'] }} </br>
+            {{ data['connectedPersonsUkPscNi-address-town'] }} </br>
+            {{ data['connectedPersonsUkPscNi-address-postcode'] }} </br>
+            {{ data['connectedPersonsUkPscNi-address-county'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-address-type-ni">
+              Change<span class="govuk-visually-hidden">
+                the Organisation`s address</span>
+            </a>
+          </dd>
+        </div>
+
+        {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Service address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPersonsPscNi-address-line-1'] }} </br>
+            {{ data['connectedPersonsPscNi-address-line-2'] }} </br>
+            {{ data['connectedPersonsPscNi-address-town'] }} </br>
+            {{ data['connectedPersonsPscNi-address-postcode'] }} </br>
+            {{ data['connectedPersonsPscNi-address-county'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-address-type-ni">
+              Change<span class="govuk-visually-hidden">
+                the person`s address</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Legal form:
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['pscLegalForm'] }} </br>
+            {{ data['pscLaw'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-law-register">
+              Change<span class="govuk-visually-hidden">
+                the Legal form</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Nature of Control:
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['controlNaturePscNi'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="nature-of-control-psc-ni">
+              Change<span class="govuk-visually-hidden">
+                the nature of control</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Registered date:
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['dateRegisteredPscNiDay'] }} / {{ data['dateRegisteredPscNiMonth'] }} / {{
+            data['dateRegisteredPscNiYear'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-date-registered-ni">
+              Change<span class="govuk-visually-hidden">
+                the registered date</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Register Name:
+          </dt>
+          <dd class="govuk-summary-list__value">
+
+          </dd>
+          <dd class="govuk-summary-list__value">
+            {{ data['nameRegisterPscNi'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="psc-register-ni">
+              Change<span class="govuk-visually-hidden">
+                the type of documentation</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {% endif %}
+
       <!-- GOV / Public  -->
 
       {% if data['connectedPersons'] == "Gov/Public Authority" %}

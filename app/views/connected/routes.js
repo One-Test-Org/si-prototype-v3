@@ -124,7 +124,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/gov-organisation');
 
   } else if (connectedPersons == 'PSC not individual or Public Authority') {
-    res.redirect('/connected/journey-page');
+    res.redirect('/connected/psc-individual-ni');
 
   } else if (connectedPersons == 'Parent / subsidiary') {
     res.redirect('/connected/journey-page');
@@ -336,6 +336,52 @@ router.post('/psc-register', function (req, res) {
   res.redirect('check-answers-connected-person');
 })
 
+// PSC Organisation
+
+router.post('/psc-individual-ni', function (req, res) {
+  res.redirect('psc-address-type-ni');
+})
+
+router.post('/psc-address-type-ni', function (req, res) {
+
+  let addressTypePscNi = req.session.data.addressTypePscNi;
+
+  if (addressTypePscNi == "No") {
+    res.redirect('psc-address-ni');
+  } else {
+    res.redirect('psc-address-uk-ni');
+  }
+})
+
+router.get('/psc-address-ni', function (req, res) {
+  res.render(path.resolve(__dirname, 'psc-address-ni'), {
+    countries: require('../../data/data').countries
+  })
+})
+
+router.post('/psc-address-ni', function (req, res) {
+  res.redirect('psc-law-register');
+})
+
+router.post('/psc-address-uk-ni', function (req, res) {
+  res.redirect('psc-law-register');
+})
+
+router.post('/psc-law-register', function (req, res) {
+  res.redirect('nature-of-control-psc-ni');
+})
+
+router.post('/nature-of-control-psc-ni', function (req, res) {
+  res.redirect('psc-date-registered-ni');
+})
+
+router.post('/psc-date-registered-ni', function (req, res) {
+  res.redirect('psc-register-ni');
+})
+
+router.post('/psc-register-ni', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
 /* 
 
 router.get('/:index/remove-connected-person', function (req, res) {
