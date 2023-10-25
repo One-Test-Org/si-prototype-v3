@@ -127,7 +127,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/psc-individual-ni');
 
   } else if (connectedPersons == 'Parent / subsidiary') {
-    res.redirect('/connected/journey-page');
+    res.redirect('/connected/parent-sub');
 
   } else if (connectedPersons == 'Predecessor') {
     res.redirect('/connected/journey-page');
@@ -382,6 +382,53 @@ router.post('/psc-date-registered-ni', function (req, res) {
 router.post('/psc-register-ni', function (req, res) {
   res.redirect('check-answers-connected-person');
 })
+
+router.post('/parent-sub', function (req, res) {
+  res.redirect('parent-address-type');
+})
+
+router.post('/parent-address-type', function (req, res) {
+
+  let addressTypeParent = req.session.data.addressTypeParent;
+
+  if (addressTypeParent == "No") {
+    res.redirect('parent-address');
+  }
+  else {
+    res.redirect('parent-address-uk');
+  }
+})
+
+router.post('/parent-address', function (req, res) {
+  res.redirect('parent-company-number-question');
+})
+
+router.post('/parent-address-uk', function (req, res) {
+  res.redirect('parent-company-number-question');
+})
+
+router.post('/parent-company-number-question', function (req, res) {
+
+  let parentNumberQuestion = req.session.data.parentNumberQuestion;
+
+  if (parentNumberQuestion == "Yes") {
+    res.redirect('parent-company-number');
+  }
+  else {
+    res.redirect('check-answers-connected-person');
+  }
+})
+
+router.post('/parent-company-number', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
+router.get('/parent-address', function (req, res) {
+  res.render(path.resolve(__dirname, 'parent-address'), {
+    countries: require('../../data/data').countries
+  })
+})
+
 /* 
 
 router.get('/:index/remove-connected-person', function (req, res) {
