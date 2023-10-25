@@ -15,25 +15,36 @@ router.post('/declaration', function (req, res) {
 })
 
 router.post('/declaration-person', function (req, res) {
-    res.redirect('address-question');
+    res.redirect('is-the-address-same');
+})
+
+router.post('/is-the-address-same', function (req, res) {
+
+    let addressSame = req.session.data.addressSame;
+
+    if (addressSame == "No") {
+        res.redirect('address-question');
+    } else {
+        res.redirect('check-answers');
+    }
 })
 
 router.post('/address-question', function (req, res) {
 
-    let addressType = req.session.data.addressType;
-  
-    if (addressType == "Yes") {
-        res.redirect('person-uk-address');
-      } else {
-        res.redirect('person-address');
-      }
-  })
+    let addressTypeDec = req.session.data.addressTypeDec;
 
-  router.get('/person-address', function (req, res) {
+    if (addressTypeDec == "Yes") {
+        res.redirect('person-uk-address');
+    } else {
+        res.redirect('person-address');
+    }
+})
+
+router.get('/person-address', function (req, res) {
     res.render(path.resolve(__dirname, 'person-address'), {
-      countries: require('../../data/data').countries
+        countries: require('../../data/data').countries
     })
-  })
+})
 
 router.post('/person-address', function (req, res) {
     res.redirect('check-answers');

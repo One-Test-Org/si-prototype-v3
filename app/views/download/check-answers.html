@@ -26,7 +26,7 @@ Supplier`s information - GOV.UK
     <div class="govuk-grid-column-full-width">
 
         <h2 class="govuk-heading-m" style="color: #1d70b8;">
-            Declaration
+            Share your information and associated declaration
         </h2>
 
         <form class="form" method="post">
@@ -38,7 +38,7 @@ Supplier`s information - GOV.UK
                     <dt class="govuk-summary-list__key">
                         Documentation type:
                     </dt>
-                   
+
                     <dd class="govuk-summary-list__value">
                         {{ data['download'] }}
                     </dd>
@@ -54,7 +54,7 @@ Supplier`s information - GOV.UK
                     <dt class="govuk-summary-list__key">
                         Declaration statement:
                     </dt>
-                   
+
                     <dd class="govuk-summary-list__value">
                         {{ data['declarationStatement'] }}
                     </dd>
@@ -70,7 +70,7 @@ Supplier`s information - GOV.UK
                     <dt class="govuk-summary-list__key">
                         Declaration person:
                     </dt>
-                   
+
                     <dd class="govuk-summary-list__value">
                         {{ data['declarationName'] }}<br>
                         {{ data['declarationRole'] }}<br>
@@ -85,13 +85,57 @@ Supplier`s information - GOV.UK
                     </dd>
                 </div>
 
-               {% if data['addressType'] == "Yes" %}
+                {% if data['addressSame'] == "Yes" and data['addressType'] == "Yes" %}
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Registered or principal office address:
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['registered-address-line-1'] }} </br>
+                        {{ data['registered-address-line-2'] }} </br>
+                        {{ data['registered-address-town'] }} </br>
+                        {{ data['registered-address-county'] }} </br>
+                        {{ data['registered-address-postcode'] }} </br>
+                        {{ data['selectData'] }} </br>
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="is-the-address-same">
+                            Change<span class="govuk-visually-hidden"> Change</span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% elif data['addressSame'] == "Yes" and data['registeredUKaddress-county'] | length != "0" %}
+
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Registered or principal office address:
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        {{ data['registeredUKaddress-line-1'] }} </br>
+                        {{ data['registeredUKaddress-line-2'] }} </br>
+                        {{ data['registeredUKaddress-town'] }} </br>
+                        {{ data['registeredUKaddress-county'] }} </br>
+                        {{ data['registeredUKaddress-postcode'] }} </br>
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                        <a class="govuk-link" href="is-the-address-same">
+                            Change<span class="govuk-visually-hidden"> Change</span>
+                        </a>
+                    </dd>
+                </div>
+
+                {% else %}
+
+                {% if data['addressTypeDec'] == "Yes" %}
 
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                         Person address:
                     </dt>
-                    
+
                     <dd class="govuk-summary-list__value">
                         {{ data['address-line-1'] }}<br>
                         {{ data['address-line-2'] }}<br>
@@ -113,7 +157,7 @@ Supplier`s information - GOV.UK
                     <dt class="govuk-summary-list__key">
                         Person address:
                     </dt>
-                    
+
                     <dd class="govuk-summary-list__value">
                         {{ data['declaration-address-line-1'] }}<br>
                         {{ data['declaration-address-line-2'] }}<br>
@@ -131,9 +175,10 @@ Supplier`s information - GOV.UK
                 </div>
 
 
-                </dl>
+            </dl>
 
-                {% endif %}
+            {% endif %}
+            {% endif %}
 
     </div>
     <div class="govuk-grid-column-two-thirds">
