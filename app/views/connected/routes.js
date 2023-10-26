@@ -130,7 +130,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/parent-sub');
 
   } else if (connectedPersons == 'Predecessor') {
-    res.redirect('/connected/journey-page');
+    res.redirect('/connected/predecessor');
 
   } else if (connectedPersons == 'Stand in') {
     res.redirect('/connected/journey-page');
@@ -429,6 +429,55 @@ router.get('/parent-address', function (req, res) {
   })
 })
 
+router.post('/predecessor', function (req, res) {
+  res.redirect('pred-address-type');
+})
+
+router.post('/pred-address-type', function (req, res) {
+
+  let addressTypePred = req.session.data.addressTypePred;
+
+  if (addressTypePred == "No") {
+    res.redirect('pred-address');
+  }
+  else {
+    res.redirect('pred-address-uk');
+  }
+})
+
+router.post('/pred-address', function (req, res) {
+  res.redirect('pred-company-number-question');
+})
+
+router.post('/pred-address-uk', function (req, res) {
+  res.redirect('pred-company-number-question');
+})
+
+router.post('/pred-company-number-question', function (req, res) {
+
+  let predNumberQuestion = req.session.data.predNumberQuestion;
+
+  if (predNumberQuestion == "Yes") {
+    res.redirect('pred-company-number');
+  }
+  else {
+    res.redirect('pred-date-registered');
+  }
+})
+
+router.post('/pred-company-number', function (req, res) {
+  res.redirect('pred-date-registered');
+})
+
+router.post('/pred-date-registered', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
+router.get('/pred-address', function (req, res) {
+  res.render(path.resolve(__dirname, 'pred-address'), {
+    countries: require('../../data/data').countries
+  })
+})
 /* 
 
 router.get('/:index/remove-connected-person', function (req, res) {
