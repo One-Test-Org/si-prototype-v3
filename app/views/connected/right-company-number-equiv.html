@@ -29,37 +29,31 @@ Supplier`s information - GOV.UK
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-column-two-thirds">
 
         <h2 class="govuk-heading-m" style="color: #1d70b8;">
-            Economic and Financial Standing
+            Connected persons
         </h2>
+        <span class="govuk-caption-l">Right to exercise control</span>
 
         <form class="form" method="post">
-            <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" data-required data-error="Upload the latest accounts"
-                    aria-required="true">
 
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" data-required data-error="Enter the Companies House number"
+                    aria-required="true">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">
-                            Upload the latest financial accounts for the last 2 years
-                        </h1>
+                        <h1 class="govuk-heading-l">What is the the registration number given under that Act?</h1>
                     </legend>
 
-
-                    <label class="govuk-label" for="fileUpload1">
-                        Upload a file
-                    </label>
-                    <input class="govuk-file-upload" id="file-Upload1" name="fileUpload1" type="file">
-
+                    <input class="govuk-input govuk-input--width-20" name="rightHouseNumberEquiv"
+                        id="rightHouseNumberEquiv" type="text" aria-describedby="rightHouseNumberEquiv">
                 </fieldset>
             </div>
-
-            <button class="govuk-button govuk-!-margin-top-4" type="submit">Save and continue</button>
-
+            <button class="govuk-button" type="submit">Save and exit</button>
         </form>
-
     </div>
+
+</div>
 </div>
 
 {% endblock %}

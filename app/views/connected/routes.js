@@ -132,8 +132,8 @@ router.post('/persons', function (req, res) {
   } else if (connectedPersons == 'Predecessor') {
     res.redirect('/connected/predecessor');
 
-  } else if (connectedPersons == 'Stand in') {
-    res.redirect('/connected/journey-page');
+  } else if (connectedPersons == 'Right to exercise control') {
+    res.redirect('/connected/right');
 
   } else {
     res.redirect('/connected/journey-page');
@@ -475,6 +475,75 @@ router.post('/pred-date-registered', function (req, res) {
 
 router.get('/pred-address', function (req, res) {
   res.render(path.resolve(__dirname, 'pred-address'), {
+    countries: require('../../data/data').countries
+  })
+})
+
+router.post('/right', function (req, res) {
+  res.redirect('right-address-type');
+})
+
+router.post('/right-address-type', function (req, res) {
+
+  let addressTypeRight = req.session.data.addressTypeRight;
+
+  if (addressTypeRight == "No") {
+    res.redirect('right-address');
+  }
+  else {
+    res.redirect('right-address-uk');
+  }
+})
+
+router.post('/right-address', function (req, res) {
+  res.redirect('right-company-number-question');
+})
+
+router.post('/right-address-uk', function (req, res) {
+  res.redirect('right-company-number-question');
+})
+
+router.post('/right-company-number-question', function (req, res) {
+
+  let rightNumberQuestion = req.session.data.rightNumberQuestion;
+
+  if (rightNumberQuestion == "Yes") {
+    res.redirect('right-company-number');
+  }
+  else {
+    res.redirect('right-company-number-question-equiv');
+  }
+})
+
+router.post('/right-company-number-question-equiv', function (req, res) {
+
+  let rightNumberQuestionEquiv = req.session.data.rightNumberQuestionEquiv;
+
+  if (rightNumberQuestionEquiv == "Yes") {
+    res.redirect('right-company-number-equiv');
+  } else {
+    res.redirect('right-nature-of-control');
+  }
+})
+
+router.post('/right-company-number-equiv', function (req, res) {
+  res.redirect('right-nature-of-control');
+})
+
+router.post('/right-company-number', function (req, res) {
+  res.redirect('right-nature-of-control');
+})
+
+router.post('/right-nature-of-control', function (req, res) {
+  res.redirect('right-date-registered');
+})
+
+router.post('/right-date-registered', function (req, res) {
+  res.redirect('check-answers-connected-person');
+})
+
+router.get('/right-address', function (req, res) {
+  res.render(path.resolve(__dirname, 'right-address'), {
     countries: require('../../data/data').countries
   })
 })
