@@ -28,8 +28,6 @@ Supplier`s information - GOV.UK
 
 {% block content %}
 
-{% if data['personQuestion'] == 'organisation' %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -50,40 +48,6 @@ Supplier`s information - GOV.UK
                     </legend>
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-!-margin-top-6">
                         <h2 class="govuk-heading-m">Enter the organisation name</h2>
-                    </legend>
-                    <input class="govuk-input govuk-input--width-20" name="connectedPerson" id="connectedPerson"
-                        type="text" aria-describedby="connectedPerson">
-
-                </div>
-    </div>
-</div>
-<button class="govuk-button" type="submit">Save and continue</button>
-</form>
-
-</fieldset>
-
-{% else %}
-
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-        <h2 class="govuk-heading-m" style="color: #1d70b8;">
-            Connected persons
-        </h2>
-        <span class="govuk-caption-l">Right to exercise control</span>
-
-        <fieldset class="govuk-fieldset" data-required
-            data-error="Enter the Parent undertaking or a subsidiary undertaking details" aria-required="true">
-
-            <form class="form" method="post">
-
-                <div class="govuk-form-group">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-heading-l">Enter the person with the right to exercise control details
-                        </h1>
-                    </legend>
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-!-margin-top-6">
-                        <h2 class="govuk-heading-m">Enter their name</h2>
                     </legend>
                     <input class="govuk-input govuk-input--width-20" name="connectedPerson" id="connectedPerson"
                         type="text" aria-describedby="connectedPerson">
@@ -138,18 +102,11 @@ Supplier`s information - GOV.UK
                         </select>
                     </div>
                 </div>
+    </div>
+    <button class="govuk-button" type="submit">Save and continue</button>
+    </form>
 
-                <button class="govuk-button" type="submit">Save and continue</button>
-            </form>
+    </fieldset>
 
-        </fieldset>
 
-        {% endif %}
-
-        {% endblock %}
-
-        {% block pageScripts %}
-        <script src="/public/javascripts/accessible-autocomplete.js"></script>
-        <script src="/public/javascripts/script.js"></script>
-        <script src="/public/javascripts/data.js"></script>
-        {% endblock %}
+    {% endblock %}

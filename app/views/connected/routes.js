@@ -490,6 +490,12 @@ router.post('/right', function (req, res) {
   res.redirect('right-address-type');
 })
 
+router.get('/right', function (req, res) {
+  res.render(path.resolve(__dirname, 'right'), {
+    nationalities: require('../../data/data').nationalities
+  })
+})
+
 router.post('/right-address-type', function (req, res) {
 
   let addressTypeRight = req.session.data.addressTypeRight;
