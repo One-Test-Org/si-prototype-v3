@@ -104,7 +104,14 @@ router.post('/companies-question', function (req, res) {
 })
 
 router.post('/person-question', function (req, res) {
-  res.redirect('persons');
+
+  let personQuestion = req.session.data.personQuestion;
+
+  if (personQuestion == "organisation" || personQuestion == "person") {
+    res.redirect('persons');
+  } else {
+    res.redirect('journey-page');
+  }
 })
 
 router.post('/persons', function (req, res) {
