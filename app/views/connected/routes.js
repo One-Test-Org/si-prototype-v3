@@ -140,7 +140,7 @@ router.post('/persons', function (req, res) {
     res.redirect('/connected/predecessor');
 
   } else if (connectedPersons == 'Right to exercise control') {
-    res.redirect('/connected/right');
+    res.redirect('/connected/journey-page');
 
   } else {
     res.redirect('/connected/journey-page');
