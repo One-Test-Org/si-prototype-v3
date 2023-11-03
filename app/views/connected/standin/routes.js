@@ -114,33 +114,33 @@ router.post('/person-question', function (req, res) {
   }
 })
 
-router.post('/persons', function (req, res) {
+router.post('/stand-in', function (req, res) {
 
   let connectedPersons = req.session.data.connectedPersons;
 
   if (connectedPersons == 'PSC Individual') {
-    res.redirect('/connected/psc-individual');
+    res.redirect('/connected/standin/psc-individual');
 
   } else if (connectedPersons == 'Director individual') {
-    res.redirect('/connected/director-individual');
+    res.redirect('/connected/standin/director-individual');
 
   } else if (connectedPersons == 'Director not individual') {
-    res.redirect('/connected/director-individual-ni');
+    res.redirect('/connected/standin/director-individual-ni');
 
   } else if (connectedPersons == 'Gov/Public Authority') {
-    res.redirect('/connected/gov-organisation');
+    res.redirect('/connected/standin/gov-organisation');
 
   } else if (connectedPersons == 'PSC not individual or Public Authority') {
-    res.redirect('/connected/psc-individual-ni');
+    res.redirect('/connected/standin/psc-individual-ni');
 
   } else if (connectedPersons == 'Parent / subsidiary') {
-    res.redirect('/connected/parent-sub');
+    res.redirect('/connected/standin/parent-sub');
 
   } else if (connectedPersons == 'Predecessor') {
-    res.redirect('/connected/predecessor');
+    res.redirect('/connected/standin/predecessor');
 
   } else if (connectedPersons == 'Right to exercise control') {
-    res.redirect('/connected/right');
+    res.redirect('/connected/standin/right');
 
   } else {
     res.redirect('/connected/standin/stand-in');
