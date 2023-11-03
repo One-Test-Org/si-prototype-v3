@@ -255,14 +255,9 @@ Supplier`s information - GOV.UK
             </dt>
             <dd class="govuk-summary-list__value">
               Name: </br>
-              Date of birth: </br>
-              Nationality: </br>
             </dd>
             <dd class="govuk-summary-list__value">
               {{ data['connectedPerson'] }} </br>
-              {{ data['rightIndividualDay'] }} / {{ data['rightIndividualMonth'] }} / {{ data['rightIndividualYear'] }}
-              </br>
-              {{ data['selectNationality'] }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="psc-individual">
@@ -321,6 +316,8 @@ Supplier`s information - GOV.UK
           </div>
 
           {% endif %}
+
+          {% if data['personQuestion'] == "organisation" %}
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -455,7 +452,50 @@ Supplier`s information - GOV.UK
           </div>
 
           {% endif %}
+
+          {% else %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Nature of Control:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['controlNatureRight'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="right-nature-of-control">
+                Change<span class="govuk-visually-hidden">
+                  the nature of control</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Registerable date:
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['dateRegisteredRightDay'] }} / {{ data['dateRegisteredRightMonth'] }} / {{
+              data['dateRegisteredRightYear'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="right-company-number">
+                Change<span class="govuk-visually-hidden">
+                  the registered date</span>
+              </a>
+            </dd>
+          </div>
+
           {% endif %}
+
+          {% endif %}
+
 
 
           <!-- Predecessor  -->

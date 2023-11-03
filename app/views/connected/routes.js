@@ -490,12 +490,6 @@ router.post('/right', function (req, res) {
   res.redirect('right-address-type');
 })
 
-router.get('/right', function (req, res) {
-  res.render(path.resolve(__dirname, 'right'), {
-    nationalities: require('../../data/data').nationalities
-  })
-})
-
 router.post('/right-address-type', function (req, res) {
 
   let addressTypeRight = req.session.data.addressTypeRight;
@@ -509,7 +503,15 @@ router.post('/right-address-type', function (req, res) {
 })
 
 router.post('/right-address', function (req, res) {
-  res.redirect('right-company-number-question');
+
+  let personQuestion = req.session.data.personQuestion;
+
+  if (personQuestion == "organisation") {
+    res.redirect('right-company-number-question');
+  }
+  else {
+    res.redirect('right-nature-of-control');
+  }
 })
 
 router.post('/right-address-uk', function (req, res) {

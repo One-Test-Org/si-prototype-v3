@@ -87,56 +87,6 @@ Supplier`s information - GOV.UK
                     </legend>
                     <input class="govuk-input govuk-input--width-20" name="connectedPerson" id="connectedPerson"
                         type="text" aria-describedby="connectedPerson">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-!-margin-top-6">
-                        <h2 class="govuk-heading-m">Enter their date of birth</h2>
-                    </legend>
-
-                    <div class="govuk-date-input" id="convictionDis">
-                        <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                                <label class="govuk-label govuk-date-input__label" for="rightIndividualDay">
-                                    Day
-                                </label>
-                                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                    id="rightIndividualDay" name="rightIndividualDay" type="text" inputmode="numeric">>
-                            </div>
-                        </div>
-                        <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                                <label class="govuk-label govuk-date-input__label" for="rightIndividualMonth">
-                                    Month
-                                </label>
-                                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                    id="rightIndividualMonth" name="rightIndividualMonth" type="text"
-                                    inputmode="numeric">
-                            </div>
-                        </div>
-                        <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                                <label class="govuk-label govuk-date-input__label" for="rightIndividualYear">
-                                    Year
-                                </label>
-                                <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                    id="rightIndividualYear" name="rightIndividualYear" type="text" inputmode="numeric">
-                            </div>
-                        </div>
-
-
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m govuk-!-margin-top-6">
-                            <h2 class="govuk-heading-m">Enter their nationality</h2>
-                        </legend>
-
-
-                        <select class="govuk-input--width-20 autocomplete" id="selectNationality"
-                            name="selectNationality">
-
-                            <option value=""></option>
-                            {% for nationality in nationalities %}
-                            <option value="{{ nationality.value }}">{{ nationality.value }}</option>
-                            {% endfor %}
-
-                        </select>
-                    </div>
                 </div>
 
                 <button class="govuk-button" type="submit">Save and continue</button>
@@ -146,10 +96,4 @@ Supplier`s information - GOV.UK
 
         {% endif %}
 
-        {% endblock %}
-
-        {% block pageScripts %}
-        <script src="/public/javascripts/accessible-autocomplete.js"></script>
-        <script src="/public/javascripts/script.js"></script>
-        <script src="/public/javascripts/data.js"></script>
         {% endblock %}
