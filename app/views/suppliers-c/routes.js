@@ -4,6 +4,25 @@ const path = require('node:path')
 
 // Add your routes here - above the module.exports line
 
+// add a timestamp to the session call the variable dt and then use it in the views with a dd/mm/yyyy format
+
+router.all('*', function (req, res, next) {
+  const timestamp = Date.now(); // Get the current timestamp in milliseconds
+  const date = new Date(timestamp); // Convert the timestamp to a Date object
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Months are zero-based
+  const year = date.getFullYear();
+
+  // Format the date as DD/MM/YYYY
+  req.session.data['dt'] = `${day}/${month}/${year}`;
+
+  next();
+});
+
+router.get('account-home', function (req, res) {
+  res.render(path.resolve(__dirname, 'account-home'));
+})
+
 router.post('/signin-success', function (req, res) {
   res.redirect('test');
 })
@@ -162,7 +181,7 @@ router.post('/formation-date', function (req, res) {
 })
 
 router.post('/non-individual-core-data', function (req, res) {
-  res.redirect('dashboard');
+  res.redirect('account-home');
 })
 
 router.get('/:index/remove-qualification', function (req, res) {

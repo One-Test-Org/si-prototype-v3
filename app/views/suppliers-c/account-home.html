@@ -23,7 +23,7 @@ Supplier`s information - GOV.UK
             <a class="govuk-breadcrumbs__link" href="/">Prototype Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="dashboard">Account home</a>
+            <a class="govuk-breadcrumbs__link" href="account-home">Account home</a>
         </li>
     </ol>
 </div>
@@ -95,30 +95,45 @@ Supplier`s information - GOV.UK
                         {% if data['legalForm'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="trader-details-completed">Edit
-                                    basic information</a>
+                                <a href="non-individual-core-data" aria-describedby="basic-information-completed">Basic
+                                    information</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="trader-details-completed">
+                            <span class="app-task-list__items">
+
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green"
+                                id="basic-information-completed">
                                 Completed
                             </span>
                         </li>
                         {% elif data['addressTypeBasic'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="trader-details-in-progress">Add
-                                    basic information</a>
+                                <a href="non-individual-core-data" aria-describedby="basic-information-in-progress">
+                                    Basic information</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="trader-details-in-progress">
+                            <span class="app-task-list__items">
+
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--blue"
+                                id="basic-information-in-progress">
                                 In progress
                             </span>
                         </li>
                         {% else %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="trader-details-not-started">Add
-                                    basic information</a>
+                                <a href="non-individual-core-data" aria-describedby="basic-information-not-started">
+                                    Basic information</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="trader-details-not-started">
+                            <span class="govuk-tag app-task-list__tag govuk-tag--grey"
+                                id="basic-information-not-started">
                                 Not started
                             </span>
                         </li>
@@ -127,38 +142,70 @@ Supplier`s information - GOV.UK
 
                         <!-- connected persons -->
 
-                        {% if data['addAnotherOfficeOfTransit'] == "No" %}
+                        {% if data['connectedPsc'] | length != "0" and data['connectedPersons'] | length == "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                {% if data['placeOfLoadingExtraInfo'] | length != "0" %}
-                                <a href="route/confirm-change" aria-describedby="route-completed">Edit connected
+                                <a href="/connected/connected-question" aria-describedby="connected-none">Connected
                                     persons</a>
-                                {% else %}
-                                <a href="route/country-of-destination" aria-describedby="route-completed">Edit connected
-                                    persons</a>
-                                {% endif%}
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="route-completed">
+                            <span class="app-task-list__items">
+
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                0 connected persons
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="connected-none">
                                 Completed
                             </span>
                         </li>
-                        {% elif data['bindingItinerary'] | length != "0" %}
+
+                        {% elif data['addAnotherConnectedPerson'] | length != "0" and data['connectedPersons'] | length
+                        != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="route/country-of-destination" aria-describedby="route-in-progress">Add
-                                    connected persons</a>
+                                <a href="/connected/connected-question" aria-describedby="connected-completed">
+                                    Connected persons</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="route-in-progress">
+                            <span class="app-task-list__items">
+
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['connectedPersonCount'] }} connected persons
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="connected-completed">
+                                Complete
+                            </span>
+                        </li>
+
+                        {% elif data['connectedPsc'] | length != "0" and data['connectedPersons'] | length != "0" %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/connected/connected-question" aria-describedby="connected-in-progress">
+                                    Connected persons</a>
+                            </span>
+                            <span class="app-task-list__items">
+
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="connected-in-progress">
                                 In progress
                             </span>
                         </li>
                         {% else %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="route/country-of-destination" aria-describedby="route-not-started">Add
-                                    connected persons</a>
+                                <a href="/connected/connected-question"
+                                    aria-describedby="connected-not-started">Connected persons</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="route-not-started">
+                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="connected-not-started">
                                 Not started
                             </span>
                         </li>
@@ -168,102 +215,72 @@ Supplier`s information - GOV.UK
 
                         <!-- mandatory exclusions -->
 
-                        {% if data['changeAtBorder'] | length != "0" %}
+                        {% if data['addAnotherExclusionMan'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                {% if data['addSafetySecurityResponse'] == "ENS" or data['addSafetySecurityResponse'] ==
-                                "EXS" or data['addSafetySecurityResponse'] == "Both" %}
-                                {% if (data['addACarrierResponse'] | length != "0") %}
-                                <a href="transport/confirm-change" aria-describedby="transport-completed">Edit
-                                    mandatory exclusions</a>
-                                {% else %}
-                                <a href="transport/inland-mode" aria-describedby="transport-completed">Edit
-                                    mandatory exclusions</a>
-                                {% endif %}
-                                {% else %}
-                                <a href="transport/inland-mode" aria-describedby="transport-completed">Edit
-                                    mandatory exclusions</a>
-                                {% endif %}
+                                <a href="/mandatory/add-another-exclusion" aria-describedby="mandatory-completed">
+                                    Mandatory exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="transport-completed">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionManCount'] }} mandatory exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="mandatory-completed">
                                 Completed
                             </span>
                         </li>
-                        {% elif data['addTransportDetails'] == "Yes" %}
+                        {% elif data['exclusionMan1'] == '' and data['exclusionMan2'] == '' and data ['exclusionMan3']
+                        == '' and data
+                        ['exclusionMan4'] == '' and data ['exclusionMan5'] == '' and data['exclusionMan6'] == '' and
+                        data
+                        ['exclusionMan7'] == '' and data ['exclusionMan8'] == '' and data ['exclusionMan9'] == '' and
+                        data
+                        ['exclusionMan10'] == '' and data ['exclusionMan11'] == '' and data ['exclusionMan12'] == '' and
+                        data
+                        ['exclusionMan13'] == '' %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="transport/inland-mode" aria-describedby="transport-in-progress">Add
-                                    mandatory exclusions</a>
+                                <a href="/mandatory/add-another-exclusion" aria-describedby="mandatory-completed">
+                                    Mandatory exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="transport-in-progress">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionManCount'] }} mandatory exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="mandatory-completed">
+                                Completed
+                            </span>
+                        </li>
+                        {% elif data['eventSub'] | length != "0" %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/mandatory/check-answers" aria-describedby="mandatory-in-progress">
+                                    Mandatory exclusions</a>
+                            </span>
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="mandatory-in-progress">
                                 In progress
                             </span>
                         </li>
                         {% else %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="transport/apply-ucr-to-all-items" aria-describedby="transport-not-started">Add
-                                    mandatory exclusions</a>
+                                <a href="/mandatory/exclusion-grounds" aria-describedby="mandatory-not-started">
+                                    Mandatory exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="transport-not-started">
+                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="mandatory-not-started">
                                 Not started
                             </span>
                         </li>
-
-                        {% endif %}
-
-
-
-                        {% if data['addSafetySecurityResponse'] == "Entry summary declaration (ENS)" or
-                        data['addSafetySecurityResponse'] == "Exit summary declaration (EXS)" or
-                        data['addSafetySecurityResponse'] == "Both entry and exit summary declarations (ENS and EXS)" %}
-                        {% if (data['addACarrierResponse'] | length != "0") %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="security/add-circumstance-indicator"
-                                    aria-describedby="safety-and-security-details-completed">Edit safety and security
-                                    details</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green"
-                                id="safety-and-security-details-completed">
-                                Completed
-                            </span>
-                        </li>
-                        {% elif (data['addCircumstanceIndicatorResponse'] | length != "0") %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="security/add-circumstance-indicator"
-                                    aria-describedby="safety-and-security-details-in-progress">Add safety and security
-                                    details</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--blue"
-                                id="safety-and-security-details-in-progress">
-                                In progress
-                            </span>
-                        </li>
-                        {% elif data['changeAtBorder'] | length != "0" %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="security/add-circumstance-indicator"
-                                    aria-describedby="safety-and-security-details-not-started">Add safety and security
-                                    details</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey"
-                                id="safety-and-security-details-not-started">
-                                Not started
-                            </span>
-                        </li>
-                        {% else %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                Safety and security details
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--red"
-                                id="safety-and-security-details-not-started">
-                                Cannot start yet
-                            </span>
-                        </li>
-                        {% endif %}
                         {% endif %}
 
                         <!-- Add discretionary exclusions -->
@@ -271,8 +288,8 @@ Supplier`s information - GOV.UK
                         {% if data['addAnotherItem'] == "No" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-completed">Edit
-                                    discretionary exclusions</a>
+                                <a href="add-items/item-warning" aria-describedby="add-items-completed">Discretionary
+                                    exclusions</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--green" id="add-items-completed">
                                 Completed
@@ -281,8 +298,8 @@ Supplier`s information - GOV.UK
                         {% elif (data['itemDescription'] | length != "0") %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-in-progress">Add
-                                    discretionary exclusions</a>
+                                <a href="add-items/item-warning" aria-describedby="add-items-in-progress">Discretionary
+                                    exclusions</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="goods-summary-in-progress">
                                 In progress
@@ -297,8 +314,8 @@ Supplier`s information - GOV.UK
                         and data['addAnotherOfficeOfTransit'] == "No" and data['addACarrierResponse'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Add
-                                    discretionary exclusions</a>
+                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
+                                    exclusions</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
                                 Not started
@@ -320,8 +337,8 @@ Supplier`s information - GOV.UK
                         and data['addAnotherOfficeOfTransit'] == "No" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Add
-                                    discretionary exclusions</a>
+                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
+                                    exclusions</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
                                 Not started
@@ -330,8 +347,8 @@ Supplier`s information - GOV.UK
                         {% else %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Add
-                                    discretionary exclusions</a>
+                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
+                                    exclusions</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
                                 Not started
@@ -388,7 +405,7 @@ Supplier`s information - GOV.UK
                 {% else %}
                 <li class="app-task-list__item">
                     <span class="app-task-list__task-name">
-                        <a href="guarantee/guarantee-type" aria-describedby="guarantee-not-started">Add
+                        <a href="guarantee/guarantee-type" aria-describedby="guarantee-not-started">
                             Economic and Financial Standing</a>
                     </span>
                     <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="guarantee-not-started">

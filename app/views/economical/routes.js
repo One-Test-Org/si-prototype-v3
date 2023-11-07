@@ -18,10 +18,10 @@ router.post('/financial-question', function (req, res) {
     } else if (financialStandIn == 'A copy of the most recent accounts or other information') {
         res.redirect('/economical/two-or-more');
 
-    } else  {
+    } else {
         res.redirect('check-answers');
     }
-    
+
 })
 
 router.post('/two-or-more', function (req, res) {
@@ -36,9 +36,9 @@ router.post('/check-answers', function (req, res) {
     let startQuestion = req.session.data.startQuestion;
 
     if (startQuestion == 'Company') {
-        res.redirect('/suppliers-c/dashboard');
+        res.redirect('/suppliers-c/account-home');
     } else {
-        res.redirect('/suppliers-d/dashboard');
+        res.redirect('/suppliers-d/account-home');
     }
 });
 

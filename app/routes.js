@@ -27,7 +27,7 @@ router.post('/sign-in', function (req, res) {
 });
 
 router.post('/signin-success', function (req, res) {
-  res.redirect('suppliers-c/dashboard');
+  res.redirect('suppliers-c/account-home');
 });
 
 router.post('/start-page', function (req, res) {
@@ -39,16 +39,16 @@ router.post('/start-question', function (req, res) {
   let startQuestion = req.session.data.startQuestion;
 
   if (startQuestion == 'Company') {
-    res.redirect('/suppliers-c/dashboard');
-  } else  
-  if (startQuestion == 'Individual') {
-    res.redirect('/suppliers-d/dashboard');
-  }
+    res.redirect('/suppliers-c/account-home');
+  } else
+    if (startQuestion == 'Individual') {
+      res.redirect('/suppliers-d/account-home');
+    }
 })
 
 // Route index page
 router.get('/', function (req, res) {
-  res.render('index', {  })
+  res.render('index', {})
 })
 
 

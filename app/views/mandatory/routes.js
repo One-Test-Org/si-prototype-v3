@@ -24,14 +24,14 @@ router.post('/exclusion-grounds', function (req, res) {
     let startQuestion = req.session.data.startQuestion;
 
     if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Company') {
-        res.redirect('/suppliers-c/dashboard');
+        res.redirect('/suppliers-c/account-home');
 
-    } else if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == ''&& startQuestion == 'Individual') {
-        res.redirect('/suppliers-d/dashboard');
+    } else if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Individual') {
+        res.redirect('/suppliers-d/account-home');
     } else {
         res.redirect('event-subject');
     }
-    
+
 })
 
 router.post('/event-subject', function (req, res) {
@@ -40,7 +40,7 @@ router.post('/event-subject', function (req, res) {
 
 router.post('/subject-name', function (req, res) {
     res.redirect('email-address');
-})  
+})
 
 router.post('/email-address', function (req, res) {
     res.redirect('address-type');
@@ -49,19 +49,19 @@ router.post('/email-address', function (req, res) {
 router.post('/address-type', function (req, res) {
 
     let addressType = req.session.data.addressType;
-  
+
     if (addressType == "Yes") {
         res.redirect('subject-uk-address');
-      } else {
+    } else {
         res.redirect('subject-address');
-      }
-  })
+    }
+})
 
 router.get('/subject-address', function (req, res) {
     res.render(path.resolve(__dirname, 'subject-address'), {
-      countries: require('../../data/data').countries
+        countries: require('../../data/data').countries
     })
-  })
+})
 
 
 router.post('/subject-uk-address', function (req, res) {
@@ -178,10 +178,10 @@ router.get('/:index/remove-exclusion', function (req, res) {
 
         let startQuestion = req.session.data.startQuestion;
         if (startQuestion == 'Company') {
-            res.redirect('../suppliers-c/dashboard');
+            res.redirect('../suppliers-c/account-home');
         }
         else {
-            res.redirect('../suppliers-d/dashboard');
+            res.redirect('../suppliers-d/account-home');
         }
     }
   });
@@ -202,10 +202,10 @@ router.get('/:index/remove-exclusion', function (req, res) {
 // Add another pattern
 
 router.get('/:index/remove-exclusion', function (req, res) {
-    res.render(path.resolve(__dirname, 'remove-exclusion')); 
-  });
+    res.render(path.resolve(__dirname, 'remove-exclusion'));
+});
 
-  router.post('/:index/remove-exclusion', function (req, res) {
+router.post('/:index/remove-exclusion', function (req, res) {
     let removeExclusionMan = req.session.data.removeExclusionMan;
     const exclusionMans = req.session.data.exclusionManArray || [];
 
@@ -222,9 +222,9 @@ router.get('/:index/remove-exclusion', function (req, res) {
     }
 
     res.redirect('../add-another-exclusion');
-  });
+});
 
-  router.get('/:index/check-answers', function (req, res) {
+router.get('/:index/check-answers', function (req, res) {
     const data = req.session.data;
     const index = parseInt(req.params.index);
     const exclusionMans = data.exclusionManArray || [];
@@ -242,9 +242,9 @@ router.get('/:index/remove-exclusion', function (req, res) {
     };
 
     res.redirect('../check-answers');
-  });
+});
 
-  router.post('/check-answers', function (req, res) {
+router.post('/check-answers', function (req, res) {
     const data = req.session.data;
     const exclusionMans = data.exclusionManArray || [];
 
@@ -267,22 +267,22 @@ router.get('/:index/remove-exclusion', function (req, res) {
     delete data.editExclusionMan;
 
     res.redirect('add-another-exclusion');
-  });
+});
 
-  router.post('/add-another-exclusion-route', function (req, res) {
-  var sessionData = req.session.data;
-     var exclusionManArray = sessionData.exclusionManArray || [];
-     var exclusionMan = {
-         "id": exclusionManArray.length + 1,
-         "exclusionMan": sessionData.exclusionMan, 
-     }
-     exclusionManArray.push(exclusionMan);
-     sessionData.exclusionManArray = exclusionManArray;
-     sessionData.exclusionManCount = exclusionManArray.length;
-     res.redirect('add-another-exclusion');
-  });
+router.post('/add-another-exclusion-route', function (req, res) {
+    var sessionData = req.session.data;
+    var exclusionManArray = sessionData.exclusionManArray || [];
+    var exclusionMan = {
+        "id": exclusionManArray.length + 1,
+        "exclusionMan": sessionData.exclusionMan,
+    }
+    exclusionManArray.push(exclusionMan);
+    sessionData.exclusionManArray = exclusionManArray;
+    sessionData.exclusionManCount = exclusionManArray.length;
+    res.redirect('add-another-exclusion');
+});
 
-  router.post('/add-another-exclusion', function (req, res) {
+router.post('/add-another-exclusion', function (req, res) {
     delete req.session.data.editExclusionMan;
 
     if (req.session.data.addAnotherExclusionMan == 'Yes') {
@@ -292,13 +292,13 @@ router.get('/:index/remove-exclusion', function (req, res) {
 
         let startQuestion = req.session.data.startQuestion;
         if (startQuestion == 'Company') {
-            res.redirect('../suppliers-c/dashboard');
+            res.redirect('../suppliers-c/account-home');
         }
-        res.redirect('../suppliers-d/dashboard');
+        res.redirect('../suppliers-d/account-home');
     }
-  });
+});
 
-  router.post('/add-another-exclusion', function (req, res) {
+router.post('/add-another-exclusion', function (req, res) {
     delete req.session.data.editExclusionMan;
 
     if (req.session.data.exclusionManCount == '10') {
@@ -307,7 +307,7 @@ router.get('/:index/remove-exclusion', function (req, res) {
     else {
         res.redirect('exclusion-grounds');
     }
-  });
+});
 
 
 module.exports = router
