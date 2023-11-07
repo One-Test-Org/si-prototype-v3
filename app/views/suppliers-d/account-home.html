@@ -34,11 +34,10 @@ Supplier`s information - GOV.UK
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full-width">
-
+    <div class="govuk-grid-column-ful-width">
 
         <h2 class="govuk-heading-l" style="color: #1d70b8;">
-            Tech Innovators Ltd
+            John Smith
         </h2>
 
         <section class="moj-ticket-panel__content moj-ticket-panel__content" aria-label="title section">
@@ -47,24 +46,12 @@ Supplier`s information - GOV.UK
             <dl class="govuk-summary-list">
                 <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__value">
-                        Charity Commission for Northern Ireland number:
-                    </dt>
-                    <dt class="govuk-summary-list__value">
-                        09984562
-                    </dt>
-                    <dd class="govuk-summary-list__actions">
-                        <a class="govuk-link" href="#">
-                        </a>
-                    </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__value">
-                        Companies House registration number:
+                        Public procurement organisation number:
                     </dt>
                     <dt class="govuk-summary-list__value">
                         04443000
                     </dt>
+
                     <dd class="govuk-summary-list__actions">
                         <a class="govuk-link" href="#">
                         </a>
@@ -92,10 +79,10 @@ Supplier`s information - GOV.UK
                         <!-- Basic Information -->
 
 
-                        {% if data['legalForm'] | length != "0" %}
+                        {% if data['tradeQuestion'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="basic-information-completed">Basic
+                                <a href="individual-core-data" aria-describedby="basic-information-completed">Basic
                                     information</a>
                             </span>
                             <span class="app-task-list__items">
@@ -109,10 +96,10 @@ Supplier`s information - GOV.UK
                                 Completed
                             </span>
                         </li>
-                        {% elif data['addressTypeBasic'] | length != "0" %}
+                        {% elif data['addressTypeReg'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="basic-information-in-progress">
+                                <a href="individual-core-data" aria-describedby="basic-information-in-progress">
                                     Basic information</a>
                             </span>
                             <span class="app-task-list__items">
@@ -129,7 +116,7 @@ Supplier`s information - GOV.UK
                         {% else %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="non-individual-core-data" aria-describedby="basic-information-not-started">
+                                <a href="individual-core-data" aria-describedby="basic-information-not-started">
                                     Basic information</a>
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--grey"
@@ -166,8 +153,7 @@ Supplier`s information - GOV.UK
                         != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="/connected/add-another-connected-person"
-                                    aria-describedby="connected-completed">
+                                <a href="/connected/connected-question" aria-describedby="connected-completed">
                                     Connected persons</a>
                             </span>
                             <span class="app-task-list__items">

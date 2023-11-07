@@ -91,11 +91,14 @@ router.post('/dir-address-uk', function (req, res) {
 router.post('/connected-question', function (req, res) {
 
   let connectedPsc = req.session.data.connectedPsc;
+  let startQuestion = req.session.data.startQuestion;
 
   if (connectedPsc == "Yes") {
     res.redirect('companies-question');
+  } else if (startQuestion == "Company") {
+    res.redirect('../suppliers-c/account-home');
   } else {
-    res.redirect('../suppliers-c/account-home')
+    res.redirect('../suppliers-d/account-home');
   }
 })
 
@@ -279,8 +282,11 @@ router.post('/add-another-connected-person', function (req, res) {
   if (req.session.data.addAnotherConnectedPerson == 'Yes') {
     res.redirect('../connected/connected-question');
   }
-  else {
+  else if (req.session.data.startQuestion == "Company") {
     res.redirect('../suppliers-c/account-home');
+  }
+  else {
+    res.redirect('../suppliers-d/account-home');
   }
 });
 
