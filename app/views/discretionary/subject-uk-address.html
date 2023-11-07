@@ -39,67 +39,73 @@ Supplier`s information - GOV.UK
 
         <span class="govuk-caption-l">
             {{ data['mandatory'] }}
-          </span>
+        </span>
 
-        <fieldset class="govuk-fieldset" data-required data-error="Enter the subject address" aria-required="true">
+        <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
 
                 {% if data['eventSubDis'] == "Supplier" and data['startQuestion'] == "Company" %}
 
                 <h1 class="govuk-heading-l">Enter Tech Innovators's address</h1>
-    
+
                 {% elif data['eventSubDis'] == "Supplier" and data['startQuestion'] == "Individual" %}
-    
+
                 <h1 class="govuk-heading-l">Enter John Smith's address date</h1>
-    
+
                 {% else %}
-    
+
                 <h1 class="govuk-heading-l">Enter {{ data['subNameDis'] }}`s address</h1>
-    
+
                 {% endif %}
-               
+
             </legend>
 
             <form class="form" method="post">
                 <div class="govuk-form-group">
 
-                        <div class="govuk-form-group govuk-!-margin-top-3">
-                            <label class="govuk-label" for="subjectDis-uk-address-line-1">
-                                Address line 1
-                            </label>
-                            <input class="govuk-input" id="subjectDis-uk-address-line-1" name="subjectDis-uk-address-line-1" type="text"
-                            value="{{ data['subjectDis-uk-address-line-1'] }}" autocomplete="subjectDis-uk-address-line1">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="subjectDis-uk-address-line-2">
-                                Address line 2 
-                            </label>
-                            <input class="govuk-input" id="subjectDis-uk-address-line-2" name="subjectDis-uk-address-line-2" type="text"
-                            value="{{ data['subjectDis-uk-address-line-2'] }}" autocomplete="subjectDis-uk-address-line-2">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="subjectDis-uk-address-town">
-                                Town or city
-                            </label>
-                            <input class="govuk-input govuk-!-width-two-thirds" id="subjectDis-uk-address-town" name="subjectDis-uk-address-town"
-                                type="text" value="{{ data['subjectDis-uk-address-town'] }}" autocomplete="subjectDis-uk-address-town">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="subjectDis-uk-address-postcode">
-                                County or State
-                            </label>
-                            <input class="govuk-input govuk-input--width-20" id="subjectDis-uk-address-county" name="subjectDis-uk-address-county"
-                                type="text" value="{{ data['subjectDis-uk-address-county'] }}" autocomplete="subjectDis-uk-address-county">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="subjectDis-uk-address-postcode">
-                                Post code
-                            </label>
-                            <input class="govuk-input govuk-input--width-10" id="subjectDis-uk-address-postcode"
-                                name="subjectDis-uk-address-postcode" type="text" value="{{ data['subjectDis-uk-address-postcode'] }}" autocomplete="subject-postal-code">
-                        </div>
-                    
-    
+                    <div class="govuk-form-group govuk-!-margin-top-3">
+                        <label class="govuk-label" for="subjectDis-uk-address-line-1">
+                            Address line 1
+                        </label>
+                        <input class="govuk-input" id="subjectDis-uk-address-line-1" name="subjectDis-uk-address-line-1"
+                            type="text" value="{{ data['subjectDis-uk-address-line-1'] }}"
+                            autocomplete="subjectDis-uk-address-line1">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="subjectDis-uk-address-line-2">
+                            Address line 2 (Optional)
+                        </label>
+                        <input class="govuk-input" id="subjectDis-uk-address-line-2" name="subjectDis-uk-address-line-2"
+                            type="text" value="{{ data['subjectDis-uk-address-line-2'] }}"
+                            autocomplete="subjectDis-uk-address-line-2">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="subjectDis-uk-address-town">
+                            Town or city
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="subjectDis-uk-address-town"
+                            name="subjectDis-uk-address-town" type="text"
+                            value="{{ data['subjectDis-uk-address-town'] }}" autocomplete="subjectDis-uk-address-town">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="subjectDis-uk-address-postcode">
+                            County or State
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" id="subjectDis-uk-address-county"
+                            name="subjectDis-uk-address-county" type="text"
+                            value="{{ data['subjectDis-uk-address-county'] }}"
+                            autocomplete="subjectDis-uk-address-county">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="subjectDis-uk-address-postcode">
+                            Post code
+                        </label>
+                        <input class="govuk-input govuk-input--width-10" id="subjectDis-uk-address-postcode"
+                            name="subjectDis-uk-address-postcode" type="text"
+                            value="{{ data['subjectDis-uk-address-postcode'] }}" autocomplete="subject-postal-code">
+                    </div>
+
+
                 </div>
                 <div class="govuk-form-group">
                     <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
