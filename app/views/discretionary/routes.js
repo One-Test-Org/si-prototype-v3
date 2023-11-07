@@ -18,10 +18,10 @@ router.post('/exclusion-grounds', function (req, res) {
     let startQuestion = req.session.data.startQuestion;
 
     if (exclusionDis1 == '' && exclusionDis2 == '' && exclusionDis3 == '' && exclusionDis4 == '' && exclusionDis5 == '' && exclusionDis6 == '' && exclusionDis7 == '' && exclusionDis8 == '' && startQuestion == 'Company') {
-        res.redirect('/suppliers-c/dashboard');
+        res.redirect('/suppliers-c/account-home');
 
     } else if (exclusionDis1 == '' && exclusionDis2 == '' && exclusionDis3 == '' && exclusionDis4 == '' && exclusionDis5 == '' && exclusionDis6 == '' && exclusionDis7 == '' && exclusionDis8 == '' && startQuestion == 'Individual') {
-        res.redirect('/suppliers-d/dashboard');
+        res.redirect('/suppliers-d/account-home');
     } else {
         res.redirect('event-subject');
     }
@@ -170,9 +170,9 @@ router.post('/add-another-exclusion', function (req, res) {
 
         let startQuestion = req.session.data.startQuestion;
         if (startQuestion == 'Company') {
-            res.redirect('../suppliers-c/dashboard');
+            res.redirect('../suppliers-c/account-home');
         }
-        res.redirect('../suppliers-d/dashboard');
+        res.redirect('../suppliers-d/account-home');
     }
 });
 

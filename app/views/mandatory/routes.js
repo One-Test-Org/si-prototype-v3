@@ -24,10 +24,10 @@ router.post('/exclusion-grounds', function (req, res) {
     let startQuestion = req.session.data.startQuestion;
 
     if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Company') {
-        res.redirect('/suppliers-c/dashboard');
+        res.redirect('/suppliers-c/account-home');
 
     } else if (exclusionMan1 == '' && exclusionMan2 == '' && exclusionMan3 == '' && exclusionMan4 == '' && exclusionMan5 == '' && exclusionMan6 == '' && exclusionMan7 == '' && exclusionMan8 == '' && exclusionMan9 == '' && exclusionMan10 == '' && exclusionMan11 == '' && exclusionMan12 == '' && exclusionMan13 == '' && startQuestion == 'Individual') {
-        res.redirect('/suppliers-d/dashboard');
+        res.redirect('/suppliers-d/account-home');
     } else {
         res.redirect('event-subject');
     }
@@ -178,10 +178,10 @@ router.get('/:index/remove-exclusion', function (req, res) {
 
         let startQuestion = req.session.data.startQuestion;
         if (startQuestion == 'Company') {
-            res.redirect('../suppliers-c/dashboard');
+            res.redirect('../suppliers-c/account-home');
         }
         else {
-            res.redirect('../suppliers-d/dashboard');
+            res.redirect('../suppliers-d/account-home');
         }
     }
   });
@@ -292,9 +292,9 @@ router.post('/add-another-exclusion', function (req, res) {
 
         let startQuestion = req.session.data.startQuestion;
         if (startQuestion == 'Company') {
-            res.redirect('../suppliers-c/dashboard');
+            res.redirect('../suppliers-c/account-home');
         }
-        res.redirect('../suppliers-d/dashboard');
+        res.redirect('../suppliers-d/account-home');
     }
 });
 
