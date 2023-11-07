@@ -285,135 +285,121 @@ Supplier`s information - GOV.UK
 
                         <!-- Add discretionary exclusions -->
 
-                        {% if data['addAnotherItem'] == "No" %}
+                        {% if data['addAnotherExclusion'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-completed">Discretionary
-                                    exclusions</a>
+                                <a href="/discretionary/add-another-exclusion"
+                                    aria-describedby="discretionary-completed">
+                                    Discretionary exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="add-items-completed">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionCount'] }} discretionary exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="discretionary-completed">
                                 Completed
                             </span>
                         </li>
-                        {% elif (data['itemDescription'] | length != "0") %}
+                        {% elif data['exclusionDis1'] == '' and data['exclusionDis2'] == '' and data ['exclusionDis3']
+                        == '' and data
+                        ['exclusionDis4'] == '' and data ['exclusionDis5'] == '' and data['exclusionDis6'] == '' and
+                        data
+                        ['exclusionDis7'] == '' and data ['exclusionDis8'] == '' %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-in-progress">Discretionary
-                                    exclusions</a>
+                                <a href="/discretionary/add-another-exclusion"
+                                    aria-describedby="discretionary-completed">
+                                    Discretionary exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="goods-summary-in-progress">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionCount'] }} discretionary exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="discretionary-completed">
+                                Completed
+                            </span>
+                        </li>
+                        {% elif data['eventSubDis'] | length != "0" %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/discretionary/check-answers" aria-describedby="discretionary-in-progress">
+                                    Discretionary exclusions</a>
+                            </span>
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--blue" id="discretionary-in-progress">
                                 In progress
                             </span>
                         </li>
                         {% else %}
-                        {% if data['addSafetySecurityResponse'] == "ENS" or data['addSafetySecurityResponse'] == "EXS"
-                        or
-                        data['addSafetySecurityResponse'] == "Both" %}
-                        {% if data['onBehalfOfSomeoneElse'] | length != "0" and data['isThereAConsignee'] | length !=
-                        "0"
-                        and data['addAnotherOfficeOfTransit'] == "No" and data['addACarrierResponse'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
-                                    exclusions</a>
+                                <a href="/discretionary/exclusion-grounds" aria-describedby="discretionary-not-started">
+                                    Discretionary exclusions</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
-                                Not started
-                            </span>
-                        </li>
-                        {% else %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                Discretionary exclusions
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--red" id="goods-summary-not-started">
-                                Cannot start yet
-                            </span>
-                        </li>
-                        {% endif %}
-                        {% else %}
-                        {% if data['onBehalfOfSomeoneElse'] | length != "0" and data['isThereAConsignee'] | length !=
-                        "0"
-                        and data['addAnotherOfficeOfTransit'] == "No" %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
-                                    exclusions</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
-                                Not started
-                            </span>
-                        </li>
-                        {% else %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="add-items/item-warning" aria-describedby="add-items-not-started">Discretionary
-                                    exclusions</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="goods-summary-not-started">
+                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="discretionary-not-started">
                                 Not started
                             </span>
                         </li>
                         {% endif %}
-                        {% endif %}
-                        {% endif %}
 
+                        <!-- Economic and Financial Standing -->
 
-
-                        {% if data['guaranteeType'] | length != "0" %}
+                        {% if data['financialStandIn'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="guarantee/guarantee-type" aria-describedby="guarantee-completed">Edit
+                                <a href="/economical/financial-question"
+                                    aria-describedby="economic-and-financial-standing-completed">
                                     Economic and Financial Standing</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="guarantee-completed">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green"
+                                id="economic-and-financial-standing-completed">
                                 Completed
                             </span>
                         </li>
-                        {% elif data['carnetNumber'] | length != "0" %}
+                        {% elif data['financialStandIn'] | length == "0" and data['financialStand'] | length != "0" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
-                                <a href="guarantee/guarantee-added-tir" aria-describedby="guarantee-in-progress">View
+                                <a href="/economical/financial-question"
+                                    aria-describedby="economic-and-financial-standing-in-progress">
                                     Economic and Financial Standing</a>
                             </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="guarantee-not-started">
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--blue"
+                                id="economic-and-financial-standing-in-progress">
+                                In progress
+                            </span>
+                        </li>
+                        {% else %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/economical/financial-question"
+                                    aria-describedby="economic-and-financial-standing-not-started">
+                                    Economic and Financial Standing</a>
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--grey"
+                                id="economic-and-financial-standing-not-started">
                                 Not started
                             </span>
                         </li>
-                        {% elif data['officeOfDeparture'] == "Belfast EPU XI000142" or data['officeOfDeparture'] ==
-                        "Warrenpoint XI005160" or data['officeOfDeparture'] == "Larne XI005220" %}
-                        <li class="app-task-list__item">
-                            <span class="app-task-list__task-name">
-                                <a href="guarantee/guarantee-type-xi" aria-describedby="guarantee-not-started">Add
-                                    Economic and Financial Standing</a>
-                            </span>
-                            <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="guarantee-not-started">
-                                Not started
-                            </span>
-                        </li>
-                        {% elif data['addSafetySecurityResponse'] == "Entry summary declaration (ENS)" or
-                        data['addSafetySecurityResponse'] == "Exit summary declaration (EXS)" or
-                        data['addSafetySecurityResponse'] == "Both entry and exit summary declarations (ENS and EXS)" %}
-                        <span class="app-task-list__task-name">
-                            <a href="guarantee/guarantee-type" aria-describedby="guarantee-not-started">Add
-                                Economic and Financial Standing</a>
-                        </span>
-                        <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="guarantee-not-started">
-                            Not started
-                        </span>
-                </li>
-                {% else %}
-                <li class="app-task-list__item">
-                    <span class="app-task-list__task-name">
-                        <a href="guarantee/guarantee-type" aria-describedby="guarantee-not-started">
-                            Economic and Financial Standing</a>
-                    </span>
-                    <span class="govuk-tag app-task-list__tag govuk-tag--grey" id="guarantee-not-started">
-                        Not started
-                    </span>
-                </li>
-                {% endif %}
-                </ul>
+                        {% endif %}
+
+                    </ul>
                 </li>
             </ol>
 
