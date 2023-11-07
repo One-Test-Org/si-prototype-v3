@@ -36,9 +36,9 @@ router.post('/check-answers', function (req, res) {
     let startQuestion = req.session.data.startQuestion;
 
     if (startQuestion == 'Company') {
-        res.redirect('/suppliers-c/account-home');
+        res.redirect('/suppliers-c/dashboard');
     } else {
-        res.redirect('/suppliers-d/account-home');
+        res.redirect('/suppliers-d/dashboard');
     }
 });
 

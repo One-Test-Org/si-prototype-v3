@@ -19,8 +19,8 @@ router.all('*', function (req, res, next) {
   next();
 });
 
-router.get('account-home', function (req, res) {
-  res.render(path.resolve(__dirname, 'account-home'));
+router.get('dashboard', function (req, res) {
+  res.render(path.resolve(__dirname, 'dashboard'));
 })
 
 router.post('/signin-success', function (req, res) {
@@ -181,7 +181,7 @@ router.post('/formation-date', function (req, res) {
 })
 
 router.post('/non-individual-core-data', function (req, res) {
-  res.redirect('account-home');
+  res.redirect('dashboard');
 })
 
 router.get('/:index/remove-qualification', function (req, res) {

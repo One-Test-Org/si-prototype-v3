@@ -23,7 +23,7 @@ router.post('/postal-address', function (req, res) {
 })
 
 router.post('/individual-core-data', function (req, res) {
-  res.redirect('account-home');
+  res.redirect('dashboard');
 })
 
 router.post('/address-type', function (req, res) {

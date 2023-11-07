@@ -95,7 +95,7 @@ router.post('/connected-question', function (req, res) {
   if (connectedPsc == "Yes") {
     res.redirect('companies-question');
   } else {
-    res.redirect('../suppliers-c/account-home')
+    res.redirect('../suppliers-c/dashboard')
   }
 })
 
@@ -280,7 +280,7 @@ router.post('/add-another-connected-person', function (req, res) {
     res.redirect('../connected/connected-question');
   }
   else {
-    res.redirect('../suppliers-c/account-home');
+    res.redirect('../suppliers-c/dashboard');
   }
 });
 
@@ -652,7 +652,7 @@ router.get('/:index/remove-connected-person', function (req, res) {
         res.redirect('../connected/persons');
          }
           else {
-            res.redirect('../suppliers-c/account-home');
+            res.redirect('../suppliers-c/dashboard');
     }
   });
   
