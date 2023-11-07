@@ -32,51 +32,54 @@ Supplier`s information - GOV.UK
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
-        <fieldset class="govuk-fieldset" data-required data-error="Enter the registered address" aria-required="true">
+        <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                    Enter Suppliers registered address
+                    Enter Suppliers contact postal address
                 </h1>
             </legend>
 
             <form class="form" method="post">
                 <div class="govuk-form-group">
 
-                        <div class="govuk-form-group govuk-!-margin-top-3">
-                            <label class="govuk-label" for="postal-address-line-1">
-                                Address line 1
-                            </label>
-                            <input class="govuk-input" id="postal-address-line-1" name="postal-address-line-1" type="text"
+                    <div class="govuk-form-group govuk-!-margin-top-3">
+                        <label class="govuk-label" for="postal-address-line-1">
+                            Address line 1
+                        </label>
+                        <input class="govuk-input" id="postal-address-line-1" name="postal-address-line-1" type="text"
                             value="{{ data['postal-address-line-1'] }}" autocomplete="postal-address-line-1">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="postal-address-line-2">
-                                Address line 2 
-                            </label>
-                            <input class="govuk-input" id="postal-address-line-2" name="postal-address-line-2" type="text"
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="postal-address-line-2">
+                            Address line 2 (Optional)
+                        </label>
+                        <input class="govuk-input" id="postal-address-line-2" name="postal-address-line-2" type="text"
                             value="{{ data['postal-address-line-2'] }}" autocomplete="postal-address-line-2">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="postal-address-town">
-                                Town or city
-                            </label>
-                            <input class="govuk-input govuk-!-width-two-thirds" id="postal-address-town" name="postal-address-town"
-                                type="text" value="{{ data['postal-address-town'] }}" autocomplete="postal-address-town">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="postal-address-county">
-                                County
-                            </label>
-                            <input class="govuk-input govuk-input--width-20" id="postal-address-county" name="postal-address-county"
-                                type="text" value="{{ data['postal-address-county'] }}" autocomplete="postal-address-county">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="postal-address-postcode">
-                                Post code
-                            </label>
-                            <input class="govuk-input govuk-input--width-10" id="postal-address-postcode"
-                                name="postal-address-postcode" type="text" value="{{ data['postal-address-postcode'] }}" autocomplete="postal-address-postcode">
-                        </div>
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="postal-address-town">
+                            Town or city
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="postal-address-town"
+                            name="postal-address-town" type="text" value="{{ data['postal-address-town'] }}"
+                            autocomplete="postal-address-town">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="postal-address-county">
+                            County
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" id="postal-address-county"
+                            name="postal-address-county" type="text" value="{{ data['postal-address-county'] }}"
+                            autocomplete="postal-address-county">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="postal-address-postcode">
+                            Post code
+                        </label>
+                        <input class="govuk-input govuk-input--width-10" id="postal-address-postcode"
+                            name="postal-address-postcode" type="text" value="{{ data['postal-address-postcode'] }}"
+                            autocomplete="postal-address-postcode">
+                    </div>
                 </div>
                 <div class="govuk-form-group">
                     <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">

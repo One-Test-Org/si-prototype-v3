@@ -32,10 +32,10 @@ Supplier`s information - GOV.UK
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters">
 
-        <fieldset class="govuk-fieldset" data-required data-error="Enter the registered address" aria-required="true">
+        <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
-                    Entergit  Suppliers registered and postal address
+                    Enter the Suppliers contact postal address
                 </h1>
             </legend>
 
@@ -52,7 +52,7 @@ Supplier`s information - GOV.UK
                     </div>
                     <div class="govuk-form-group">
                         <label class="govuk-label" for="registered-address-line-2">
-                            Address line 2 
+                            Address line 2 (Optional)
                         </label>
                         <input class="govuk-input" id="registered-address-line-2" name="registered-address-line-2"
                             type="text" value="{{ data['registered-address-line-2'] }}"
@@ -87,7 +87,7 @@ Supplier`s information - GOV.UK
                     </label>
 
                     <select class="govuk-input autocomplete" id="selectData" name="selectData">
-                        
+
                         <option value=""></option>
                         {% for country in countries %}
                         <option value="{{ country.value }}">{{ country.value }}</option>
