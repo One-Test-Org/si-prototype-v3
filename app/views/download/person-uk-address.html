@@ -38,7 +38,7 @@ Supplier`s information - GOV.UK
         </h2>
 
 
-        <fieldset class="govuk-fieldset" data-required data-error="Enter the your address" aria-required="true">
+        <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                 <h1 class="govuk-fieldset__heading">
                     Enter your address
@@ -50,41 +50,41 @@ Supplier`s information - GOV.UK
             <form class="form" method="post">
                 <div class="govuk-form-group">
 
-                        <div class="govuk-form-group govuk-!-margin-top-3">
-                            <label class="govuk-label" for="address-line-1">
-                                Address line 1
-                            </label>
-                            <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"
+                    <div class="govuk-form-group govuk-!-margin-top-3">
+                        <label class="govuk-label" for="address-line-1">
+                            Address line 1
+                        </label>
+                        <input class="govuk-input" id="address-line-1" name="address-line-1" type="text"
                             value="{{ data['address-line-1'] }}" autocomplete="address-line1">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="address-line-2">
-                                Address line 2 
-                            </label>
-                            <input class="govuk-input" id="address-line-2" name="address-line-2" type="text"
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="address-line-2">
+                            Address line 2 (Optional)
+                        </label>
+                        <input class="govuk-input" id="address-line-2" name="address-line-2" type="text"
                             value="{{ data['address-line-2'] }}" autocomplete="address-line-2">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="address-town">
-                                Town or city
-                            </label>
-                            <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town"
-                                type="text" value="{{ data['address-town'] }}" autocomplete="address-town">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="address-postcode">
-                                County 
-                            </label>
-                            <input class="govuk-input govuk-input--width-20" id="address-county" name="address-county"
-                                type="text" value="{{ data['address-county'] }}" autocomplete="address-county">
-                        </div>
-                        <div class="govuk-form-group">
-                            <label class="govuk-label" for="address-postcode">
-                                Post code
-                            </label>
-                            <input class="govuk-input govuk-input--width-10" id="address-postcode"
-                                name="address-postcode" type="text" value="{{ data['address-postcode'] }}" autocomplete="declaration-postal-code">
-                        </div>
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="address-town">
+                            Town or city
+                        </label>
+                        <input class="govuk-input govuk-!-width-two-thirds" id="address-town" name="address-town"
+                            type="text" value="{{ data['address-town'] }}" autocomplete="address-town">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="address-postcode">
+                            County
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" id="address-county" name="address-county"
+                            type="text" value="{{ data['address-county'] }}" autocomplete="address-county">
+                    </div>
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="address-postcode">
+                            Post code
+                        </label>
+                        <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode"
+                            type="text" value="{{ data['address-postcode'] }}" autocomplete="declaration-postal-code">
+                    </div>
 
                 </div>
                 <div class="govuk-form-group">
@@ -104,4 +104,3 @@ Supplier`s information - GOV.UK
 
 
 {% endblock %}
-
