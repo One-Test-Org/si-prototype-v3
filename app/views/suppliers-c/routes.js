@@ -391,9 +391,15 @@ router.post('/add-another-trade', function (req, res) {
     res.redirect('trade-type');
   }
 });
-/* Postcode Search Regex */
 
-router.get('/find-address', function (req, res) {
+router.post('/find-address', function (req, res) {
+  res.redirect('select-address');
+})
+
+
+/* Postcode Search Regex 
+
+router.get('/suppliers-c/find-address', function (req, res) {
 
   var postcode = req.session.data['postcode']
 
@@ -424,6 +430,54 @@ router.get('/find-address', function (req, res) {
 
     } else {
       res.redirect('/find-address')
+    }
+
+  } else {
+    res.redirect('/find-address')
+  }
+
+})
+
+*/
+
+router.get('/suppliers-c/find-address', function (req, res) {
+
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "4VzWgfvN8LO9q5Wmxf4gLjqGyRNU6YwX")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('/find-address')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/no-address-found')
+        });
+
     }
 
   } else {
