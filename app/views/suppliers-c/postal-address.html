@@ -54,7 +54,7 @@ Supplier`s information - GOV.UK
                     </div>
                     <div class="govuk-form-group">
                         <label class="govuk-label" for="postal-address-line-2">
-                            Address line 2 (Optional)
+                            Address line 2 (optional)
                         </label>
                         <input class="govuk-input" id="postal-address-line-2" name="postal-address-line-2" type="text"
                             value="{{ data['postal-address-line-2'] }}" autocomplete="postal-address-line-2">
@@ -69,7 +69,7 @@ Supplier`s information - GOV.UK
                     </div>
                     <div class="govuk-form-group">
                         <label class="govuk-label" for="postal-address-county">
-                            County
+                            County (optional)
                         </label>
                         <input class="govuk-input govuk-input--width-20" id="postal-address-county"
                             name="postal-address-county" type="text" value="{{ data['postal-address-county'] }}"
@@ -125,7 +125,7 @@ Supplier`s information - GOV.UK
 <!-- Add an event listener to the form to prevent the error message on submit 
 <script>
 document.getElementById('myForm').addEventListener('submit', function(event) {
-    // Get the Address line 2 (Optional) input value
+    // Get the Address line 2 (optional) input value
     const addressLine2Input = document.getElementById('postal-address-line-2');
     const addressLine2Value = addressLine2Input.value;
 
