@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const path = require('node:path')
 
+// API
+const axios = require('axios');
+
 // Add your routes here - above the module.exports line
 
 // add a timestamp to the session call the variable dt and then use it in the views with a dd/mm/yyyy format
@@ -399,7 +402,7 @@ router.post('/find-address', function (req, res) {
 
 /* Postcode Search Regex 
 
-router.get('/suppliers-c/find-address', function (req, res) {
+router.post('/suppliers-c/find-address', function (req, res) {
 
   var postcode = req.session.data['postcode']
 
@@ -450,7 +453,7 @@ router.get('/suppliers-c/find-address', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "4VzWgfvN8LO9q5Wmxf4gLjqGyRNU6YwX")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -485,5 +488,15 @@ router.get('/suppliers-c/find-address', function (req, res) {
   }
 
 })
+
+router.post('/select-address', function (req, res) {
+  res.redirect('submit-address');
+})
+
+router.post('/submit-address', function (req, res) {
+  const selectedAddress = req.body.address;
+  // Now you can use selectedAddress
+});
+
 
 module.exports = router

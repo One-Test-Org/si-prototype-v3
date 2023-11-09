@@ -43,20 +43,19 @@ Supplier`s information - GOV.UK
             <p>{{ data['addresses'] | length }} {% if (data['addresses'] | length > 1) %}addresses{% else %}address{%
                 endif %} found for {{ data['postcode'] }}. <a href="find-address">Search again</a></p>
 
-            <form class="form" method="post" novalidate>
+            <form class="form" method="post" action="/suppliers-c/submit-address" novalidate>
                 <div class="govuk-form-group">
 
                     <div class="govuk-radios">
 
-                        {% for address in data['addresses'] %}
-                        <div class="govuk-form-group">
-                            <input class="govuk-radios__input" id="{{ address }}" name="address" type="radio"
+                        {% for address in addresses %}
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="address-{{ loop.index }}" name="address" type="radio"
                                 value="{{ address }}">
-                            <label class="govuk-label govuk-radios__label" for="{{ address }}">
-                                {{ ['address'] }}
+                            <label class="govuk-label govuk-radios__label" for="address-{{ loop.index }}">
+                                {{ address }}
                             </label>
                         </div>
-
                         {% endfor %}
 
                     </div>
