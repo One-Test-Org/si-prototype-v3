@@ -36,6 +36,10 @@ router.get('/registered-address', function (req, res) {
   })
 })
 
+router.post('/non-individual-core-data', function (req, res) {
+  res.redirect('account-home');
+})
+
 router.post('/registered-address', function (req, res) {
   res.redirect('non-individual-core-data');
 })

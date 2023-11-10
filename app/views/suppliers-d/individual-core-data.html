@@ -48,65 +48,35 @@ Supplier`s information - GOV.UK
   </div>
 </div>
 
-{% if data['addressTypeReg'] == "No" %}
+<form class="form" method="post">
 
+  {% if data['addressTypeReg'] == "No" %}
 
-<dl class="govuk-summary-list">
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Contact postal address:
-    </dt>
-    {% if data ['registered-address-line-2'] | length == "0" and data ['registered-address-county'] | length == "0" %}
-    <dd class="govuk-summary-list__value">
-      {{ data['registered-address-line-1'] }} </br>
-      {{ data['registered-address-town'] }} </br>
-      {{ data['registered-address-postcode'] }} </br>
-      {{ data['selectData'] }} </br>
-    </dd>
-    {% else %}
-    <dd class="govuk-summary-list__value">
-      {{ data['registered-address-line-1'] }} </br>
-      {{ data['registered-address-line-2'] }} </br>
-      {{ data['registered-address-town'] }} </br>
-      {{ data['registered-address-postcode'] }} </br>
-      {{ data['registered-address-county'] }} </br>
-      {{ data['selectData'] }} </br>
-    </dd>
-    {% endif %}
-    <dd class="govuk-summary-list__value">
-    </dd>
-    <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="address-type">
-        Change<span class="govuk-visually-hidden"> Change</span>
-      </a>
-    </dd>
-  </div>
-
-  {% elif data['addressTypeReg'] == "Yes" %}
 
   <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Contact postal address:
       </dt>
-      {% if data ['postal-address-line-2'] | length == "0" and data ['postal-address-county'] | length == "0" %}
+      {% if data ['registered-address-line-2'] | length == "0" and data ['registered-address-county'] | length == "0" %}
       <dd class="govuk-summary-list__value">
-        {{ data['postal-address-line-1'] }} </br>
-        {{ data['postal-address-town'] }} </br>
-        {{ data['postal-address-postcode'] }} </br>
-      </dd>
-      <dd class="govuk-summary-list__value">
+        {{ data['registered-address-line-1'] }} </br>
+        {{ data['registered-address-town'] }} </br>
+        {{ data['registered-address-postcode'] }} </br>
+        {{ data['selectData'] }} </br>
       </dd>
       {% else %}
       <dd class="govuk-summary-list__value">
-        {{ data['postal-address-line-1'] }} </br>
-        {{ data['postal-address-line-2'] }} </br>
-        {{ data['postal-address-town'] }} </br>
-        {{ data['postal-address-county'] }} </br>
-        {{ data['postal-address-postcode'] }} </br>
-      <dd class="govuk-summary-list__value">
+        {{ data['registered-address-line-1'] }} </br>
+        {{ data['registered-address-line-2'] }} </br>
+        {{ data['registered-address-town'] }} </br>
+        {{ data['registered-address-postcode'] }} </br>
+        {{ data['registered-address-county'] }} </br>
+        {{ data['selectData'] }} </br>
       </dd>
       {% endif %}
+      <dd class="govuk-summary-list__value">
+      </dd>
       <dd class="govuk-summary-list__actions">
         <a class="govuk-link" href="address-type">
           Change<span class="govuk-visually-hidden"> Change</span>
@@ -114,352 +84,390 @@ Supplier`s information - GOV.UK
       </dd>
     </div>
 
-
-    {% else %}
-
+    {% elif data['addressTypeReg'] == "Yes" %}
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Contact postal address:
         </dt>
+        {% if data ['postal-address-line-2'] | length == "0" and data ['postal-address-county'] | length == "0" %}
         <dd class="govuk-summary-list__value">
+          {{ data['postal-address-line-1'] }} </br>
+          {{ data['postal-address-town'] }} </br>
+          {{ data['postal-address-postcode'] }} </br>
         </dd>
         <dd class="govuk-summary-list__value">
         </dd>
+        {% else %}
+        <dd class="govuk-summary-list__value">
+          {{ data['postal-address-line-1'] }} </br>
+          {{ data['postal-address-line-2'] }} </br>
+          {{ data['postal-address-town'] }} </br>
+          {{ data['postal-address-county'] }} </br>
+          {{ data['postal-address-postcode'] }} </br>
+        <dd class="govuk-summary-list__value">
+        </dd>
+        {% endif %}
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="address-type">
-            Add<span class="govuk-visually-hidden"> Add</span>
-          </a>
-        </dd>
-      </div>
-
-      {% endif %}
-
-      {% if data['vatReg'] == "No" %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          VAT Number:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['vatReg'] }}
-        </dt>
-        <dt class="govuk-summary-list__value">
-
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="vat-question">
-            Change<span class="govuk-visually-hidden"> Change</span>
-          </a>
-        </dd>
-      </div>
-
-      {% elif data['vatReg'] == "Yes" %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          VAT Number:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['vatReg'] }}
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['vatNumber'] }}
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="vat-question">
-            Change<span class="govuk-visually-hidden"> Change</span>
-          </a>
-        </dd>
-      </div>
-
-      {% else %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          VAT Number:
-        </dt>
-        <dt class="govuk-summary-list__value">
-
-        </dt>
-        <dt class="govuk-summary-list__value">
-
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="vat-question">
-            Add<span class="govuk-visually-hidden">Add</span>
-          </a>
-        </dd>
-      </div>
-
-      {% endif %}
-
-      {% if data['webQuestion'] == "No" %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Website address:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['webQuestion'] }}
-        </dt>
-        <dt class="govuk-summary-list__value">
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="web-question">
             Change<span class="govuk-visually-hidden"> Change</span>
           </a>
         </dd>
       </div>
 
 
-      {% elif data['webAddress'] | length != "0" %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Website address:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['webQuestion'] }}
-        </dt>
-        <dt class="govuk-summary-list__value">
-          <a class="govuk-link" href="https://{{ data['webAddress'] }}">
-            {{ data['webAddress'] }}
-          </a>
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="web-question">
-            Change<span class="govuk-visually-hidden"> Change</span>
-          </a>
-        </dd>
-      </div>
-
       {% else %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Website address:
-        </dt>
-        <dt class="govuk-summary-list__value">
 
-        </dt>
-        <dt class="govuk-summary-list__value">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact postal address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="address-type">
+              Add<span class="govuk-visually-hidden"> Add</span>
+            </a>
+          </dd>
+        </div>
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="web-question">
-            Add<span class="govuk-visually-hidden"> Add</span>
-          </a>
-        </dd>
-      </div>
+        {% endif %}
 
-      {% endif %}
+        {% if data['vatReg'] == "No" %}
 
-      <!-- Email -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            VAT Number:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['vatReg'] }}
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-      {% if data['emailAddress'] | length != "0" %}
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="vat-question">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Email address:
-        </dt>
-        <dt class="govuk-summary-list__value">
+        {% elif data['vatReg'] == "Yes" %}
 
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['emailAddress'] }}
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="email-address">
-            Change<span class="govuk-visually-hidden"> Change</span>
-          </a>
-        </dd>
-      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            VAT Number:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['vatReg'] }}
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['vatNumber'] }}
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="vat-question">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
-      {% else %}
+        {% else %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Email address:
-        </dt>
-        <dt class="govuk-summary-list__value">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            VAT Number:
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-        </dt>
-        <dt class="govuk-summary-list__value">
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="email-address">
-            Add<span class="govuk-visually-hidden"> Add</span>
-          </a>
-        </dd>
-      </div>
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="vat-question">
+              Add<span class="govuk-visually-hidden">Add</span>
+            </a>
+          </dd>
+        </div>
 
-      {% endif %}
+        {% endif %}
 
-      <!-- Qualifications section -->
+        {% if data['webQuestion'] == "No" %}
 
-      {% if data['qualificationArray'] | length == "1" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Website address:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['webQuestion'] }}
+          </dt>
+          <dt class="govuk-summary-list__value">
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="web-question">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row ros-add-to-a-list">
-        <dt class="govuk-summary-list__key">
-          Qualifications:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          You have added
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['qualificationCount'] }} qualification
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="add-another-qualification">
-            View<span class="govuk-visually-hidden">View</span>
-          </a>
-        </dd>
-      </div>
 
-      {% elif data['qualificationArray'] | length != "0" and data['qualificationArray'] | length != "1" %}
+        {% elif data['webAddress'] | length != "0" %}
 
-      <div class="govuk-summary-list__row ros-add-to-a-list">
-        <dt class="govuk-summary-list__key">
-          Qualifications:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          You have added
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['qualificationCount'] }} qualifications
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="add-another-qualification">
-            View<span class="govuk-visually-hidden">View</span>
-          </a>
-        </dd>
-      </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Website address:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['webQuestion'] }}
+          </dt>
+          <dt class="govuk-summary-list__value">
+            <a class="govuk-link" href="https://{{ data['webAddress'] }}">
+              {{ data['webAddress'] }}
+            </a>
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="web-question">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
-      {% elif data['qualificationQuestion'] == "No" %}
+        {% else %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Qualifications:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          None
-        </dt>
-        <dt class="govuk-summary-list__value">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Website address:
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="qualification-question">
-            Change<span class="govuk-visually-hidden">Change</span>
-          </a>
-        </dd>
-      </div>
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-      {% else %}
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="web-question">
+              Add<span class="govuk-visually-hidden"> Add</span>
+            </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Qualifications:
-        </dt>
-        <dt class="govuk-summary-list__value">
-        </dt>
-        <dt class="govuk-summary-list__value">
+        {% endif %}
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="qualification-question">
-            Add<span class="govuk-visually-hidden">Add</span>
-          </a>
-        </dd>
-      </div>
+        <!-- Email -->
 
-      {% endif %}
+        {% if data['emailAddress'] | length != "0" %}
 
-      <!-- Trades section -->
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address:
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-      {% if data['tradeArray'] | length == "1" %}
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['emailAddress'] }}
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="email-address">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row ros-add-to-a-list">
-        <dt class="govuk-summary-list__key">
-          Trade assurances:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          You have added
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['tradeCount'] }} trade assurance
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="add-another-trade">
-            View<span class="govuk-visually-hidden">View</span>
-          </a>
-        </dd>
-      </div>
+        {% else %}
 
-      {% elif data['tradeArray'] | length != "0" and data['tradeArray'] | length != "1" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address:
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-      <div class="govuk-summary-list__row ros-add-to-a-list">
-        <dt class="govuk-summary-list__key">
-          Trade assurances:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          You have added
-        </dt>
-        <dt class="govuk-summary-list__value">
-          {{ data['tradeCount'] }} trade assurances
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="add-another-trade">
-            View<span class="govuk-visually-hidden">View</span>
-          </a>
-        </dd>
-      </div>
+          </dt>
+          <dt class="govuk-summary-list__value">
 
-      {% elif data['tradeQuestion'] == "No" %}
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="email-address">
+              Add<span class="govuk-visually-hidden"> Add</span>
+            </a>
+          </dd>
+        </div>
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Trade assurances:
-        </dt>
-        <dt class="govuk-summary-list__value">
-          None
-        </dt>
-        <dt class="govuk-summary-list__value">
+        {% endif %}
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="trade-question">
-            View<span class="govuk-visually-hidden">View</span>
-          </a>
-        </dd>
-      </div>
+        <!-- Qualifications section -->
 
-      {% else %}
+        {% if data['qualificationArray'] | length == "1" %}
 
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Trade assurances:
-        </dt>
-        <dt class="govuk-summary-list__value">
-        </dt>
-        <dt class="govuk-summary-list__value">
+        <div class="govuk-summary-list__row ros-add-to-a-list">
+          <dt class="govuk-summary-list__key">
+            Qualifications:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            You have added
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['qualificationCount'] }} qualification
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-another-qualification">
+              View<span class="govuk-visually-hidden">View</span>
+            </a>
+          </dd>
+        </div>
 
-        </dt>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="trade-question">
-            Add<span class="govuk-visually-hidden">Add</span>
-          </a>
-        </dd>
-      </div>
+        {% elif data['qualificationArray'] | length != "0" and data['qualificationArray'] | length != "1" %}
 
-      {% endif %}
+        <div class="govuk-summary-list__row ros-add-to-a-list">
+          <dt class="govuk-summary-list__key">
+            Qualifications:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            You have added
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['qualificationCount'] }} qualifications
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-another-qualification">
+              View<span class="govuk-visually-hidden">View</span>
+            </a>
+          </dd>
+        </div>
 
-    </dl>
+        {% elif data['qualificationQuestion'] == "No" %}
 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Qualifications:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            None
+          </dt>
+          <dt class="govuk-summary-list__value">
+
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="qualification-question">
+              Change<span class="govuk-visually-hidden">Change</span>
+            </a>
+          </dd>
+        </div>
+
+        {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Qualifications:
+          </dt>
+          <dt class="govuk-summary-list__value">
+          </dt>
+          <dt class="govuk-summary-list__value">
+
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="qualification-question">
+              Add<span class="govuk-visually-hidden">Add</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+        <!-- Trades section -->
+
+        {% if data['tradeArray'] | length == "1" %}
+
+        <div class="govuk-summary-list__row ros-add-to-a-list">
+          <dt class="govuk-summary-list__key">
+            Trade assurances:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            You have added
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['tradeCount'] }} trade assurance
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-another-trade">
+              View<span class="govuk-visually-hidden">View</span>
+            </a>
+          </dd>
+        </div>
+
+        {% elif data['tradeArray'] | length != "0" and data['tradeArray'] | length != "1" %}
+
+        <div class="govuk-summary-list__row ros-add-to-a-list">
+          <dt class="govuk-summary-list__key">
+            Trade assurances:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            You have added
+          </dt>
+          <dt class="govuk-summary-list__value">
+            {{ data['tradeCount'] }} trade assurances
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="add-another-trade">
+              View<span class="govuk-visually-hidden">View</span>
+            </a>
+          </dd>
+        </div>
+
+        {% elif data['tradeQuestion'] == "No" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Trade assurances:
+          </dt>
+          <dt class="govuk-summary-list__value">
+            None
+          </dt>
+          <dt class="govuk-summary-list__value">
+
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="trade-question">
+              View<span class="govuk-visually-hidden">View</span>
+            </a>
+          </dd>
+        </div>
+
+        {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Trade assurances:
+          </dt>
+          <dt class="govuk-summary-list__value">
+          </dt>
+          <dt class="govuk-summary-list__value">
+
+          </dt>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="trade-question">
+              Add<span class="govuk-visually-hidden">Add</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
+
+      </dl>
+
+      <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" action="account-home">
+        Save and return
+      </button>
+
+</form>
+<!--
     <a href="account-home" class="govuk-link">Return to account home</a>
-
-    </div>
-    </div>
-    {% endblock %}
+  -->
+</div>
+</div>
+{% endblock %}
