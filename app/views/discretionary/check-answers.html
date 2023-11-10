@@ -30,7 +30,7 @@ Supplier`s information - GOV.UK
     </h2>
 
     <span class="govuk-caption-l">
-      {{ data['exclusionDis1'] }} 
+      {{ data['exclusionDis1'] }}
       {{ data['exclusionDis2'] }}
       {{ data['exclusionDis3'] }}
       {{ data['exclusionDis4'] }}
@@ -40,7 +40,7 @@ Supplier`s information - GOV.UK
       {{ data['exclusionDis8'] }}
       {{ data['exclusionDis9'] }}
     </span>
-    
+
 
 
     <form class="form" method="post">
@@ -63,7 +63,7 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-        {% if  data['eventSubDis'] == "Associated person" or data['eventSubDis'] == "Connected person" %}
+        {% if data['eventSubDis'] == "Associated person" or data['eventSubDis'] == "Connected person" %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -97,11 +97,11 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-        {% elif  data['eventSubDis'] == "Supplier" %}
+        {% elif data['eventSubDis'] == "Supplier" %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-          Subject name:
+            Subject name:
           </dt>
           <dd class="govuk-summary-list__value">
             John Smith
@@ -140,15 +140,23 @@ Supplier`s information - GOV.UK
           <dt class="govuk-summary-list__key">
             Subject address:
           </dt>
+          {% if data['subjectDis-uk-address-line-2'] | length != "0" and data['subjectDis-uk-address-county'] | length
+          != "0" %}
           <dd class="govuk-summary-list__value">
             {{ data['subjectDis-uk-address-line-1'] }} </br>
             {{ data['subjectDis-uk-address-line-2'] }} </br>
             {{ data['subjectDis-uk-address-town'] }} </br>
-            {{ data['subjectDis-uk-address-postcode'] }} </br>
             {{ data['subjectDis-uk-address-county'] }} </br>
+            {{ data['subjectDis-uk-address-postcode'] }} </br>
           </dd>
+          {% else %}
+          {{ data['subjectDis-uk-address-line-1'] }} </br>
+          {{ data['subjectDis-uk-address-town'] }} </br>
+          {{ data['subjectDis-uk-address-postcode'] }} </br>
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="subject-address">
+            <a class="govuk-link" href="address-type">
               Change<span class="govuk-visually-hidden"> Change</span>
             </a>
           </dd>
@@ -157,116 +165,126 @@ Supplier`s information - GOV.UK
         {% else %}
 
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Subject address:
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['subjectDis-address-line-1'] }} </br>
-              {{ data['subjectDis-address-line-2'] }} </br>
-              {{ data['subjectDis-address-town'] }} </br>
-              {{ data['subjectDis-address-postcode'] }} </br>
-              {{ data['subjectDis-address-county'] }} </br>
-              {{ data['selectData'] }} </br>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="subject-address">
-                Change<span class="govuk-visually-hidden"> Change</span>
-              </a>
-            </dd>
-          </div>
+          <dt class="govuk-summary-list__key">
+            Subject address:
+          </dt>
+          {% if data['subjectDis-address-line-2'] | length != "0" and data['subjectDis-address-county'] | length != "0"
+          %}
+          <dd class="govuk-summary-list__value">
+            {{ data['subjectDis-address-line-1'] }} </br>
+            {{ data['subjectDis-address-line-2'] }} </br>
+            {{ data['subjectDis-address-town'] }} </br>
+            {{ data['subjectDis-address-postcode'] }} </br>
+            {{ data['subjectDis-address-county'] }} </br>
+            {{ data['selectData'] }} </br>
+          </dd>
+          {% else %}
+          {{ data['subjectDis-address-line-1'] }} </br>
+          {{ data['subjectDis-address-town'] }} </br>
+          {{ data['subjectDis-address-postcode'] }} </br>
+          {{ data['selectData'] }} </br>
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="address-type">
+              Change<span class="govuk-visually-hidden"> Change</span>
+            </a>
+          </dd>
+        </div>
 
         {% endif %}
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email address:
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['emailAddressDis'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="email-address">
-                Change<span class="govuk-visually-hidden">
-                  event date</span>
-              </a>
-            </dd>
-          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['emailAddressDis'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="email-address">
+              Change<span class="govuk-visually-hidden">
+                event date</span>
+            </a>
+          </dd>
+        </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Type of documentation:
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['documentsDis'] }} <br>
-              {{ data['documents-by-webDis'] }}
-              {{ data['documents-2Dis'] }} <br>
-              {{ data['file-upload-1Dis'] }}
-              {{ data['cannotProveDisNone'] }}
-              {{ data['cannotProveDis'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="event-documents">
-                Change<span class="govuk-visually-hidden">
-                  the type of documentation</span>
-              </a>
-            </dd>
-          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Type of documentation:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['documentsDis'] }} <br>
+            {{ data['documents-by-webDis'] }}
+            {{ data['documents-2Dis'] }} <br>
+            {{ data['file-upload-1Dis'] }}
+            {{ data['cannotProveDisNone'] }}
+            {{ data['cannotProveDis'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-documents">
+              Change<span class="govuk-visually-hidden">
+                the type of documentation</span>
+            </a>
+          </dd>
+        </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Mitigating details:
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['mitDetailDis1'] }} </br>
-              {{ data['mitDetailDis2'] }} </br>
-              {{ data['mitDetailDis3'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="event-mitigation">
-                Change<span class="govuk-visually-hidden">
-                  the type of documentation</span>
-              </a>
-            </dd>
-          </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Mitigating details:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['mitDetailDis1'] }} </br>
+            {{ data['mitDetailDis2'] }} </br>
+            {{ data['mitDetailDis3'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-mitigation">
+              Change<span class="govuk-visually-hidden">
+                the type of documentation</span>
+            </a>
+          </dd>
+        </div>
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Event date:
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['convictionDayDis'] }} / {{ data['convictionMonthDis'] }} / {{ data['convictionYearDis'] }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="event-date">
-                Change<span class="govuk-visually-hidden">
-                  event date</span>
-              </a>
-            </dd>
-          </div>
-  
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Event date:
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['convictionDayDis'] }} / {{ data['convictionMonthDis'] }} / {{ data['convictionYearDis'] }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="event-date">
+              Change<span class="govuk-visually-hidden">
+                event date</span>
+            </a>
+          </dd>
+        </div>
+
 
       </dl>
 
-      </div>
-      <div class="govuk-grid-column-two-thirds">
-      
-      <h3 class="govuk-heading-m govuk-!-margin-top-9">Now submit your discretionary exclusions</h3>
-
-      <p class="govuk-body">
-        By submitting this data you are confirming that, to the best of your knowledge, the details you are providing are correct.
-      </p>
-
-      <div class="govuk-button-group govuk-!-margin-top-9">
-        <button class="govuk-button" data-module="govuk-button">
-          Confirm and submit
-        </button>
-      </div>
-
-      </div>
-
-
-    </form>
   </div>
+  <div class="govuk-grid-column-two-thirds">
+
+    <h3 class="govuk-heading-m govuk-!-margin-top-9">Now submit your discretionary exclusions</h3>
+
+    <p class="govuk-body">
+      By submitting this data you are confirming that, to the best of your knowledge, the details you are providing are
+      correct.
+    </p>
+
+    <div class="govuk-button-group govuk-!-margin-top-9">
+      <button class="govuk-button" data-module="govuk-button">
+        Confirm and submit
+      </button>
+    </div>
+
+  </div>
+
+
+  </form>
+</div>
 </div>
 
 {% endblock %}

@@ -65,7 +65,8 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-        {% if data['startQuestion'] == "Individual" and data['eventSub'] == "Associated person" or data['eventSub'] == "Connected person" %}
+        {% if data['startQuestion'] == "Individual" and data['eventSub'] == "Associated person" or data['eventSub'] ==
+        "Connected person" %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -156,15 +157,24 @@ Supplier`s information - GOV.UK
           <dt class="govuk-summary-list__key">
             Subject address:
           </dt>
+          {% if data['subject-uk-address-line-2'] | length != "0" and data['subject-uk-address-county'] | length != "0"
+          %}
           <dd class="govuk-summary-list__value">
             {{ data['subject-uk-address-line-1'] }} </br>
             {{ data['subject-uk-address-line-2'] }} </br>
             {{ data['subject-uk-address-town'] }} </br>
-            {{ data['subject-uk-address-postcode'] }} </br>
             {{ data['subject-uk-address-county'] }} </br>
+            {{ data['subject-uk-address-postcode'] }} </br>
           </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['subject-uk-address-line-1'] }} </br>
+            {{ data['subject-uk-address-town'] }} </br>
+            {{ data['subject-uk-address-postcode'] }} </br>
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="subject-address">
+            <a class="govuk-link" href="address-type">
               Change<span class="govuk-visually-hidden"> Change</span>
             </a>
           </dd>
@@ -176,6 +186,7 @@ Supplier`s information - GOV.UK
           <dt class="govuk-summary-list__key">
             Subject address:
           </dt>
+          {% if data['subject-address-line-2'] | length != "0" and data['subject-address-county'] | length != "0" %}
           <dd class="govuk-summary-list__value">
             {{ data['subject-address-line-1'] }} </br>
             {{ data['subject-address-line-2'] }} </br>
@@ -184,8 +195,15 @@ Supplier`s information - GOV.UK
             {{ data['subject-address-county'] }} </br>
             {{ data['selectData'] }} </br>
           </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['subject-address-line-1'] }} </br>
+            {{ data['subject-address-town'] }} </br>
+            {{ data['subject-address-postcode'] }} </br>
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="subject-address">
+            <a class="govuk-link" href="address-type">
               Change<span class="govuk-visually-hidden"> Change</span>
             </a>
           </dd>
