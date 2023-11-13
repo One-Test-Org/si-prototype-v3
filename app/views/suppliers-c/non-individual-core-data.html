@@ -247,13 +247,14 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-        {% elif data['postal-uk-address-county'] | length != "0" %}
+        {% elif data['addressTypePos'] == "Yes" %}
 
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Contact postal address:
           </dt>
+          {% if data ['postal-address-line-2'] | length == "0" and data ['postal-address-county'] | length == "0" %}
           <dd class="govuk-summary-list__value">
             {{ data['postal-uk-address-line-1'] }} </br>
             {{ data['postal-uk-address-line-2'] }} </br>
@@ -261,6 +262,13 @@ Supplier`s information - GOV.UK
             {{ data['postal-uk-address-postcode'] }} </br>
             {{ data['postal-uk-address-county'] }} </br>
           </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['postal-uk-address-line-1'] }} </br>
+            {{ data['postal-uk-address-town'] }} </br>
+            {{ data['postal-uk-address-postcode'] }} </br>
+          </dd>
+          {% endif %}
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
             </a>
@@ -274,6 +282,7 @@ Supplier`s information - GOV.UK
 
         {% else %}
 
+        {% if data['addressTypePos'] | length != "0" or data['addressTypeBasic'] | length != "0" %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -289,6 +298,25 @@ Supplier`s information - GOV.UK
             </a>
           </dd>
         </div>
+
+        {% else %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Contact postal address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="postal-address-type">
+              Add<span class="govuk-visually-hidden">Add</span>
+            </a>
+          </dd>
+        </div>
+
+        {% endif %}
 
         {% endif %}
         {% endif %}
