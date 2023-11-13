@@ -521,7 +521,15 @@ router.post('/right-address', function (req, res) {
 })
 
 router.post('/right-address-uk', function (req, res) {
-  res.redirect('right-company-number-question');
+
+  let personQuestion = req.session.data.personQuestion;
+
+  if (personQuestion == "organisation") {
+    res.redirect('right-company-number-question');
+  }
+  else {
+    res.redirect('right-nature-of-control');
+  }
 })
 
 router.post('/right-company-number-question', function (req, res) {
