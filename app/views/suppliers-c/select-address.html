@@ -47,8 +47,8 @@ Supplier`s information - GOV.UK
                 <div class="govuk-form-group">
 
                     <div class="govuk-radios">
-
-                        {% for address in addresses %}
+                        {# Note: this line was previously `for address in addresses` #}
+                        {% for address in data['addresses'] %}
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="address-{{ loop.index }}" name="address" type="radio"
                                 value="{{ address }}">
