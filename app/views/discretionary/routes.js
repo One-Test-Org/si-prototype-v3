@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const path = require('node:path')
 
+// API
+const axios = require('axios');
 
 // Add your routes here - above the module.exports line
 
@@ -45,7 +47,7 @@ router.post('/address-type', function (req, res) {
     let addressTypeDis = req.session.data.addressTypeDis;
 
     if (addressTypeDis == "Yes") {
-        res.redirect('subject-uk-address');
+        res.redirect('find-subject-uk-address');
     } else {
         res.redirect('subject-address');
     }
@@ -55,6 +57,10 @@ router.get('/subject-address', function (req, res) {
     res.render(path.resolve(__dirname, 'subject-address'), {
         countries: require('../../data/data').countries
     })
+})
+
+router.post('/subject-uk-address', function (req, res) {
+    res.redirect('event-documents');
 })
 
 router.post('/subject-uk-address', function (req, res) {
@@ -187,6 +193,55 @@ router.post('/add-another-exclusion', function (req, res) {
     }
 });
 
+router.post('/select-subject-uk-address', function (req, res) {
+    res.redirect('event-documents');
+});
+
+router.post('/find-subject-uk-address', function (req, res) {
+
+    var postcodeLookup = req.session.data['postcode']
+
+    const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+    if (postcodeLookup) {
+
+        if (regex.test(postcodeLookup) === true) {
+
+            axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+                .then(response => {
+                    var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+                    const titleCaseAddresses = addresses.map(address => {
+                        const parts = address.split(', ');
+                        const formattedParts = parts.map((part, index) => {
+                            if (index === parts.length - 1) {
+                                // Preserve postcode (DL14 0DX) in uppercase
+                                return part.toUpperCase();
+                            }
+                            return part
+                                .split(' ')
+                                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                                .join(' ');
+                        });
+                        return formattedParts.join(', ');
+                    });
+
+                    req.session.data['addresses'] = titleCaseAddresses;
+
+                    res.redirect('select-subject-uk-address')
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.redirect('/discretionary/subject-uk-address')
+                });
+
+        }
+
+    } else {
+        res.redirect('/find-subject-uk-address')
+    }
+
+})
 
 module.exports = router
 

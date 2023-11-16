@@ -46,15 +46,15 @@ Supplier`s information - GOV.UK
 
                 {% if data['eventSubDis'] == "Supplier" and data['startQuestion'] == "Company" %}
 
-                <h1 class="govuk-heading-l">Enter Tech Innovators's address</h1>
+                <h1 class="govuk-heading-l">Enter Tech Innovators's address manually</h1>
 
                 {% elif data['eventSubDis'] == "Supplier" and data['startQuestion'] == "Individual" %}
 
-                <h1 class="govuk-heading-l">Enter John Smith's address date</h1>
+                <h1 class="govuk-heading-l">Enter John Smith's address manually</h1>
 
                 {% else %}
 
-                <h1 class="govuk-heading-l">Enter {{ data['subNameDis'] }}`s address</h1>
+                <h1 class="govuk-heading-l">Enter {{ data['subNameDis'] }}`s address manually</h1>
 
                 {% endif %}
 
