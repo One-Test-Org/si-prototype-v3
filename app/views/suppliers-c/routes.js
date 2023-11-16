@@ -49,7 +49,7 @@ router.post('/address-type', function (req, res) {
   let addressTypeBasic = req.session.data.addressTypeBasic;
 
   if (addressTypeBasic == "Yes") {
-    res.redirect('registered-uk-address');
+    res.redirect('find-registered-uk-address');
   } else {
     res.redirect('registered-address');
   }
@@ -399,8 +399,11 @@ router.post('/add-another-trade', function (req, res) {
   }
 });
 
+router.post('/select-registered-uk-address', function (req, res) {
+  res.redirect('non-individual-core-data');
+});
 
-router.post('/find-address', function (req, res) {
+router.post('/find-registered-uk-address', function (req, res) {
 
   var postcodeLookup = req.session.data['postcode']
 
@@ -431,17 +434,17 @@ router.post('/find-address', function (req, res) {
 
           req.session.data['addresses'] = titleCaseAddresses;
 
-          res.redirect('select-address')
+          res.redirect('select-registered-uk-address')
         })
         .catch(error => {
           console.log(error);
-          res.redirect('/no-address-found')
+          res.redirect('/suppliers-c/registered-uk-address')
         });
 
     }
 
   } else {
-    res.redirect('/find-address')
+    res.redirect('/find-registered-uk-address')
   }
 
 })

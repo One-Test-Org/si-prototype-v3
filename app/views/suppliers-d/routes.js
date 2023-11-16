@@ -211,7 +211,7 @@ router.post('/add-another-qualification-route', function (req, res) {
 router.post('/add-another-qualification', function (req, res) {
   delete req.session.data.editQualification;
 
-  if (req.session.data.addAnotherqualification == 'Yes') {
+  if (req.session.data.addAnotherQualification == 'Yes') {
     res.redirect('qualification-type');
   }
   else {
