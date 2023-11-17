@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const path = require('node:path')
 
+// API
+const axios = require('axios');
+
 // Add your routes here - above the module.exports line
 
 router.post('/signin-success', function (req, res) {
@@ -31,7 +34,7 @@ router.post('/address-type', function (req, res) {
   let addressTypeReg = req.session.data.addressTypeReg;
 
   if (addressTypeReg == "Yes") {
-    res.redirect('postal-address');
+    res.redirect('find-postal-uk-address');
   } else {
     res.redirect('registered-address');
   }
@@ -335,41 +338,52 @@ router.post('/add-another-trade', function (req, res) {
 });
 /* Postcode Search Regex */
 
-router.get('/find-address', function (req, res) {
+router.post('/select-postal-uk-address', function (req, res) {
+  res.redirect('individual-core-data');
+});
 
-  var postcode = req.session.data['postcode']
+router.post('/find-postal-uk-address', function (req, res) {
 
-  // UK Postcode Regex
+  var postcodeLookup = req.session.data['postcode']
+
   const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
 
-  // Check if a postcode has been entered
-  if (postcode) {
+  if (postcodeLookup) {
 
-    // Check if the postcode is a valid UK postcode
-    if (regex.test(postcode) === true) {
+    if (regex.test(postcodeLookup) === true) {
 
-      // Send API request to OS Places with the entered postcode and API key
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcode + "&key=" + "4VzWgfvN8LO9q5Wmxf4gLjqGyRNU6YwX")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
         .then(response => {
-
-          // If the API returns a VALID response add the responses to the session and redirect the page to a list of results
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
-          req.session.data['addresses'] = addresses;
-          res.redirect('/select-address')
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-postal-uk-address')
         })
         .catch(error => {
-
-          // If the API returns an ERROR or NO RESULTS redirect the page to a no address found page
           console.log(error);
-          res.redirect('/no-address-found')
+          res.redirect('/suppliers-d/postal-uk-address')
         });
 
-    } else {
-      res.redirect('/find-address')
     }
 
   } else {
-    res.redirect('/find-address')
+    res.redirect('/find-postal-uk-address')
   }
 
 })
