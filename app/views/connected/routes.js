@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const path = require('node:path')
 
+// API
+const axios = require('axios');
 
 // Add your routes here - above the module.exports line
 
@@ -64,7 +66,7 @@ router.post('/director-address-type', function (req, res) {
   if (addressTypeDir == "No") {
     res.redirect('dir-address');
   } else {
-    res.redirect('dir-address-uk');
+    res.redirect('find-address-dir');
   }
 })
 
@@ -576,113 +578,56 @@ router.get('/right-address', function (req, res) {
     countries: require('../../data/data').countries
   })
 })
-/* 
 
-router.get('/:index/remove-connected-person', function (req, res) {
-    res.render(path.resolve(__dirname, 'remove-connected-person'));
-  });
-  
-  router.post('/:index/remove-connected-person', function (req, res) {
-    let removeIndividual = req.session.data.removeIndividual;
-    const individuals = req.session.data.IndividualArray || [];
-  
-    if (removeIndividual == 'Yes' && individuals.length) {
-        const deleteIndex = req.params.index - 1;
-        const maxIndex = individuals.length || 0;
-  
-        if (deleteIndex <= maxIndex) {
-            individuals.splice(deleteIndex, 1);
-  
-            req.session.data.individualArray = individuals;
-            req.session.data.individualCount = individuals.length;
-        }
-    }
-  
-    res.redirect('../add-another-connected-person');
-  });
-  
-  router.get('/:index/check-answers-connected-person', function (req, res) {
-    const data = req.session.data;
-    const index = parseInt(req.params.index);
-    const individuals = data.individualArray || [];
-  
-    if (!individuals.length) {
-        return res.redirect('../add-another-connected-person');
-    }
-  
-    const individual = individuals[req.params.index - 1] || {};
-  
-    req.session.data = {
-        ...data,
-        ...individual,
-        editIndividual: index,
-    };
-  
-    res.redirect('../check-answers-connected-person');
-  });
-  
-  router.post('/check-answers-connected-person', function (req, res) {
-    const data = req.session.data;
-    const individuals = data.individualArray || [];
-    
-    const individual = {
-        individualName: data.individualName,
-        individualDay: data.individualDay,
-        individualMonth: data.individualMonth,
-        individualYear: data.individualYear
-    };
-  
-    if (data.editIndividual) {
-        individuals[data.editIndividual - 1] = individual;
-    }
-    else {
-        individuals.push(individual)
-        data.individualArray = individuals;
-        data.individualCount = individuals.length;
-    }
-  
-    delete data.editIndividual;
-    
-    res.redirect('add-another-connected-person');
-  });
-  
-  router.post('/add-another-connected-person-route', function (req, res) {
-  var sessionData = req.session.data;
-     var individualArray = sessionData.individualArray || [];
-     var individual = {
-         "id": individualArray.length + 1,
-         "individual": sessionData.individualName,
-     }
-     individualArray.push(individual);
-     sessionData.individualArray = individualArray;
-     sessionData.individualCount = individualArray.length;
-     res.redirect('add-another-connected-person');
-  });
-  
-  router.post('/add-another-connected-person', function (req, res) {
-    delete req.session.data.editIndividual;
-  
-    if (req.session.data.addAnotherIndividual == 'Yes') {
-        res.redirect('../connected/persons');
-         }
-          else {
-            res.redirect('../suppliers-c/account-home');
-    }
-  });
-  
-  router.post('/add-another-connected-person', function (req, res) {
-    delete req.session.data.editIndividual;
-  
-    if (req.session.data.individualCount == '10') {
-        res.redirect('../connected/persons');
-    }
-    else {
-        res.redirect('psc-individual');
-    }
-  });
+router.post('/select-address-dir', function (req, res) {
+  res.redirect('check-answers-connected-person');
+});
 
-*/
+router.post('/find-address-dir', function (req, res) {
 
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-address-dir')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/connected/dir-address-uk')
+        });
+
+    }
+
+  } else {
+    res.redirect('/find-address-dir')
+  }
+
+})
 module.exports = router
 
 

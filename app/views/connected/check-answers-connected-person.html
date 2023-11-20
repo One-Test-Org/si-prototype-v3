@@ -1347,7 +1347,7 @@ Supplier`s information - GOV.UK
                   </dd>
                 </div>
 
-                {% if data['addressTypeDir'] == "Yes" %}
+                {% if data['addressTypeDir'] == "Yes" and data['address'] | length == "0" %}
 
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
@@ -1374,9 +1374,27 @@ Supplier`s information - GOV.UK
                   </dd>
                   {% endif %}
                   <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="dir-address-type">
+                    <a class="govuk-link" href="director-address-type">
                       Change<span class="govuk-visually-hidden">
                         the Director`s address</span>
+                    </a>
+                  </dd>
+                </div>
+
+                {% elif data['addressTypeDir'] == "Yes" and data['address'] | length != "0" %}
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Subject address:
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                  </dd>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['address'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="address-type">
+                      Change<span class="govuk-visually-hidden"> Change</span>
                     </a>
                   </dd>
                 </div>
