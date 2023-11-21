@@ -58,7 +58,41 @@ Supplier`s information - GOV.UK
           </dd>
         </div>
 
-        {% if data['addressTypeRight'] == "Yes" %}
+        {% if data['addressTypeRight'] == "No" %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Service address:
+          </dt>
+          <dd class="govuk-summary-list__value">
+          </dd>
+          {% if data['connectedPersonsRight-address-line-2'] | length != "0" and
+          data['connectedPersonsRight-address-county'] | length != "0" %}
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPersonsRight-address-line-1'] }} </br>
+            {{ data['connectedPersonsRight-address-line-2'] }} </br>
+            {{ data['connectedPersonsRight-address-town'] }} </br>
+            {{ data['connectedPersonsRight-address-postcode'] }} </br>
+            {{ data['connectedPersonsRight-address-county'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          {% else %}
+          <dd class="govuk-summary-list__value">
+            {{ data['connectedPersonsRight-address-line-1'] }} </br>
+            {{ data['connectedPersonsRight-address-town'] }} </br>
+            {{ data['connectedPersonsRight-address-postcode'] }} </br>
+            {{ data['selectData'] }}
+          </dd>
+          {% endif %}
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="right-address-type">
+              Change<span class="govuk-visually-hidden">
+                the person`s address</span>
+            </a>
+          </dd>
+        </div>
+
+        {% elif data['addressTypeRight'] == "Yes" and data['address'] | length == "0" %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -96,32 +130,16 @@ Supplier`s information - GOV.UK
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Service address:
+            Subject address:
           </dt>
           <dd class="govuk-summary-list__value">
           </dd>
-          {% if data['connectedPersonsRight-address-line-2'] | length != "0" and
-          data['connectedPersonsRight-address-county'] | length != "0" %}
           <dd class="govuk-summary-list__value">
-            {{ data['connectedPersonsRight-address-line-1'] }} </br>
-            {{ data['connectedPersonsRight-address-line-2'] }} </br>
-            {{ data['connectedPersonsRight-address-town'] }} </br>
-            {{ data['connectedPersonsRight-address-postcode'] }} </br>
-            {{ data['connectedPersonsRight-address-county'] }} </br>
-            {{ data['selectData'] }}
+            {{ data['address'] }}
           </dd>
-          {% else %}
-          <dd class="govuk-summary-list__value">
-            {{ data['connectedPersonsRight-address-line-1'] }} </br>
-            {{ data['connectedPersonsRight-address-town'] }} </br>
-            {{ data['connectedPersonsRight-address-postcode'] }} </br>
-            {{ data['selectData'] }}
-          </dd>
-          {% endif %}
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="right-address-type">
-              Change<span class="govuk-visually-hidden">
-                the person`s address</span>
+              Change<span class="govuk-visually-hidden"> Change</span>
             </a>
           </dd>
         </div>
@@ -287,7 +305,7 @@ Supplier`s information - GOV.UK
             </dd>
           </div>
 
-          {% if data['addressTypeRight'] == "Yes" %}
+          {% if data['addressTypeRight'] == "Yes" and data['address'] | length == "0" %}
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -317,6 +335,24 @@ Supplier`s information - GOV.UK
               <a class="govuk-link" href="right-address-type">
                 Change<span class="govuk-visually-hidden">
                   the Organisation`s address</span>
+              </a>
+            </dd>
+          </div>
+
+          {% elif data['addressTypeRight'] == "Yes" and data['address'] | length != "0" %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Subject address:
+            </dt>
+            <dd class="govuk-summary-list__value">
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="right-address-type">
+                Change<span class="govuk-visually-hidden"> Change</span>
               </a>
             </dd>
           </div>
