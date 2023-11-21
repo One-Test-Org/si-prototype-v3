@@ -364,7 +364,7 @@ router.post('/psc-address-type-ni', function (req, res) {
   if (addressTypePscNi == "No") {
     res.redirect('psc-address-ni');
   } else {
-    res.redirect('psc-address-uk-ni');
+    res.redirect('find-address-psc-ni');
   }
 })
 
@@ -875,6 +875,56 @@ router.post('/find-address-gov', function (req, res) {
 
   } else {
     res.redirect('/find-address-gov')
+  }
+
+})
+
+router.post('/select-address-psc-ni', function (req, res) {
+  res.redirect('psc-law-register');
+});
+
+router.post('/find-address-psc-ni', function (req, res) {
+
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-address-psc-ni')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/connected/psc-address-uk-ni')
+        });
+
+    }
+
+  } else {
+    res.redirect('/find-address-psc-ni')
   }
 
 })
