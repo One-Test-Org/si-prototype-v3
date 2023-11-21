@@ -1102,6 +1102,24 @@ Supplier`s information - GOV.UK
                   </dd>
                 </div>
 
+                {% elif data['addressTypeGov'] == "Yes" and data['address'] | length != "0" %}
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Subject address:
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                  </dd>
+                  <dd class="govuk-summary-list__value">
+                    {{ data['address'] }}
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="gov-address-type">
+                      Change<span class="govuk-visually-hidden"> Change</span>
+                    </a>
+                  </dd>
+                </div>
+
                 {% else %}
 
                 <div class="govuk-summary-list__row">
