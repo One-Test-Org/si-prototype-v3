@@ -321,7 +321,7 @@ router.post('/address-type', function (req, res) {
   if (addressType == "No") {
     res.redirect('psc-address');
   } else {
-    res.redirect('psc-address-uk');
+    res.redirect('find-address-psc');
   }
 })
 
@@ -410,7 +410,7 @@ router.post('/parent-address-type', function (req, res) {
     res.redirect('parent-address');
   }
   else {
-    res.redirect('parent-address-uk');
+    res.redirect('find-address-parent');
   }
 })
 
@@ -629,7 +629,6 @@ router.post('/find-address-dir', function (req, res) {
 
 })
 
-
 router.post('/select-address-dir-ni', function (req, res) {
   res.redirect('dir-law-register-ni');
 });
@@ -676,6 +675,106 @@ router.post('/find-address-dir-ni', function (req, res) {
 
   } else {
     res.redirect('/find-address-dir-ni')
+  }
+
+})
+
+router.post('/select-address-parent', function (req, res) {
+  res.redirect('parent-company-number-question');
+});
+
+router.post('/find-address-parent', function (req, res) {
+
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-address-parent')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/connected/parent-address-uk')
+        });
+
+    }
+
+  } else {
+    res.redirect('/find-address-parent')
+  }
+
+})
+
+router.post('/select-address-psc', function (req, res) {
+  res.redirect('nature-of-control-psc');
+});
+
+router.post('/find-address-psc', function (req, res) {
+
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-address-psc')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/connected/psc-address-uk')
+        });
+
+    }
+
+  } else {
+    res.redirect('/find-address-psc')
   }
 
 })
