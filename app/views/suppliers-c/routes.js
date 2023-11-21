@@ -70,7 +70,7 @@ router.post('/postal-address-type', function (req, res) {
   let addressTypePos = req.session.data.addressTypePos;
 
   if (addressTypePos == "Yes") {
-    res.redirect('postal-uk-address');
+    res.redirect('find-postal-uk-address');
   } else {
     res.redirect('postal-address');
   }
@@ -445,6 +445,56 @@ router.post('/find-registered-uk-address', function (req, res) {
 
   } else {
     res.redirect('/find-registered-uk-address')
+  }
+
+})
+
+router.post('/select-postal-uk-address', function (req, res) {
+  res.redirect('non-individual-core-data');
+});
+
+router.post('/find-postal-uk-address', function (req, res) {
+
+  var postcodeLookup = req.session.data['postcode']
+
+  const regex = RegExp('^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$');
+
+  if (postcodeLookup) {
+
+    if (regex.test(postcodeLookup) === true) {
+
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+        .then(response => {
+          var addresses = response.data.results.map(result => result.DPA.ADDRESS);
+
+          const titleCaseAddresses = addresses.map(address => {
+            const parts = address.split(', ');
+            const formattedParts = parts.map((part, index) => {
+              if (index === parts.length - 1) {
+                // Preserve postcode (DL14 0DX) in uppercase
+                return part.toUpperCase();
+              }
+              return part
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(' ');
+            });
+            return formattedParts.join(', ');
+          });
+
+          req.session.data['addresses'] = titleCaseAddresses;
+
+          res.redirect('select-postal-uk-address')
+        })
+        .catch(error => {
+          console.log(error);
+          res.redirect('/suppliers-c/postal-uk-address')
+        });
+
+    }
+
+  } else {
+    res.redirect('/find-postal-uk-address')
   }
 
 })

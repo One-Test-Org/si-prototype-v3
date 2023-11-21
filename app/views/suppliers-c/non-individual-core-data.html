@@ -283,7 +283,7 @@ Supplier`s information - GOV.UK
             </dd>
           </div>
 
-          {% elif data['addressTypePos'] == "Yes" %}
+          {% elif data['addressTypePos'] == "Yes" and data ['address'] | length == "0" %}
 
 
           <div class="govuk-summary-list__row">
@@ -316,6 +316,23 @@ Supplier`s information - GOV.UK
             </dd>
           </div>
 
+          {% elif data['addressTypePos'] == "Yes" and data ['address'] | length != "0" %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Contact postal address:
+            </dt>
+            <dd class="govuk-summary-list__value">
+            </dd>
+            <dd class="govuk-summary-list__value">
+              {{ data['address'] }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="is-the-address-same">
+                Change<span class="govuk-visually-hidden">Add</span>
+              </a>
+            </dd>
+          </div>
           {% else %}
 
           {% if data['addressTypePos'] | length != "0" or data['addressTypeBasic'] | length != "0" %}
