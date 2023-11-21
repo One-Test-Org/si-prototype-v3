@@ -216,7 +216,8 @@ Supplier`s information - GOV.UK
 
                         <!-- mandatory exclusions -->
 
-                        {% if data['addAnotherExclusionMan'] | length != "0" %}
+                        {% if data['addAnotherExclusionMan'] | length != "0" and data['exclusionManArray'] | length >=
+                        "2" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
                                 <a href="/mandatory/add-another-exclusion" aria-describedby="mandatory-completed">
@@ -228,6 +229,23 @@ Supplier`s information - GOV.UK
                             </span>
                             <span class="app-task-list__items">
                                 {{ data ['exclusionManCount'] }} mandatory exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="mandatory-completed">
+                                Completed
+                            </span>
+                        </li>
+                        {% elif data['addAnotherExclusionMan'] | length != "0" %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/mandatory/add-another-exclusion" aria-describedby="mandatory-completed">
+                                    Mandatory exclusions</a>
+                            </span>
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionManCount'] }} mandatory exclusion
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--green" id="mandatory-completed">
                                 Completed
@@ -286,7 +304,9 @@ Supplier`s information - GOV.UK
 
                         <!-- Add discretionary exclusions -->
 
-                        {% if data['addAnotherExclusion'] | length != "0" %}
+
+
+                        {% if data['addAnotherExclusion'] | length != "0" and data['exclusionArray'] | length >= "2" %}
                         <li class="app-task-list__item">
                             <span class="app-task-list__task-name">
                                 <a href="/discretionary/add-another-exclusion"
@@ -299,6 +319,24 @@ Supplier`s information - GOV.UK
                             </span>
                             <span class="app-task-list__items">
                                 {{ data ['exclusionCount'] }} discretionary exclusions
+                            </span>
+                            <span class="govuk-tag app-task-list__tag govuk-tag--green" id="discretionary-completed">
+                                Completed
+                            </span>
+                        </li>
+                        {% elif data['addAnotherExclusion'] | length != "0" %}
+                        <li class="app-task-list__item">
+                            <span class="app-task-list__task-name">
+                                <a href="/discretionary/add-another-exclusion"
+                                    aria-describedby="discretionary-completed">
+                                    Discretionary exclusions</a>
+                            </span>
+                            <span class="app-task-list__items">
+                                <!-- style the below dt variable in DD/MM/YYYY format-->
+                                Last updated: {{ data['dt'] }}
+                            </span>
+                            <span class="app-task-list__items">
+                                {{ data ['exclusionCount'] }} discretionary exclusion
                             </span>
                             <span class="govuk-tag app-task-list__tag govuk-tag--green" id="discretionary-completed">
                                 Completed
@@ -349,6 +387,8 @@ Supplier`s information - GOV.UK
                                 Not started
                             </span>
                         </li>
+
+
                         {% endif %}
 
                         <!-- Economic and Financial Standing -->
