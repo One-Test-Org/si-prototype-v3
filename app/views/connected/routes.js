@@ -593,7 +593,7 @@ router.post('/find-address-dir', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -643,7 +643,7 @@ router.post('/find-address-dir-ni', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -693,7 +693,7 @@ router.post('/find-address-parent', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -743,7 +743,7 @@ router.post('/find-address-psc', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -793,7 +793,7 @@ router.post('/find-address-pred', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -843,7 +843,7 @@ router.post('/find-address-gov', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -893,7 +893,7 @@ router.post('/find-address-psc-ni', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
@@ -943,7 +943,7 @@ router.post('/find-address-right', function (req, res) {
 
     if (regex.test(postcodeLookup) === true) {
 
-      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + "CS48P3ceaHollIQFsIMoP4oXLjvlbqp2")
+      axios.get("https://api.os.uk/search/places/v1/postcode?postcode=" + postcodeLookup + "&key=" + process.env.AXIOS_API_KEY)
         .then(response => {
           var addresses = response.data.results.map(result => result.DPA.ADDRESS);
 
